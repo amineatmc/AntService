@@ -21,6 +21,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Gender> Genders { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Boundary> Boundarys { get; set; }
 
     }
 }

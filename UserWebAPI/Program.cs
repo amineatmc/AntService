@@ -17,7 +17,6 @@ builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterMod
 IConfiguration configuration = builder.Configuration;
 
 builder.Services.AddControllers();
-
 var tokenOptions = configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {

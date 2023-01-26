@@ -24,6 +24,9 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<UserManager>().As<IUserService>();
             builder.RegisterType<EfUser>().As<IUser>();
 
+            builder.RegisterType<EfBoundaryDal>().As<IBoundaryDal>();
+            builder.RegisterType<BoundaryManager>().As<IBoundaryService>();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()
