@@ -12,7 +12,7 @@ namespace Entities.Concrete
 
         public int BoundaryID { get; set; }
         public string _id { get; set; }
-        public int StationId { get; set; }
+        public int StationID { get; set; }
         public string Lat { get; set; }
         public string Long { get; set; }
         public DateTime CreatedDate { get; set; }

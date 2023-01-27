@@ -9,7 +9,7 @@ namespace AntalyaTaksiAccount.Models
         public string? Surname { get; set; }
         public string MailAdress { get; set; }
         public string Phone { get; set; }
-        public string Password { get; set; }
+       // public string Password { get; set; }
         public string? ProfilePhotoPath { get; set; }
         public int MailVerify { get; set; }
         public int ResetPasswordVerify { get; set; }
