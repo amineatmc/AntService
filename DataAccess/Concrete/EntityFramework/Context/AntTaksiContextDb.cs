@@ -15,12 +15,14 @@ namespace DataAccess.Concrete.EntityFramework.Context
             optionsBuilder.UseSqlServer(@"Server=192.168.2.62;Database=ATAccountDB;User Id=sa;Password=Bilge03!;TrustServerCertificate=True");
         }
 
-        public DbSet<User> Users { get; set; }
-        public DbSet<Company> Companies { get; set; }
-        public DbSet<Department> Departments { get; set; }
-        public DbSet<Gender> Genders { get; set; }
+        public DbSet<Vehicle> Vehicles { get; set; }
+        public DbSet<Station> Stations { get; set; }
         public DbSet<Passenger> Passengers { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Driver> Drivers { get; set; }
+        public DbSet<DriverVehicle> DriverVehicles { get; set; }
+        public DbSet<VehicleOwner> VehicleOwners { get; set; }
+        public DbSet<AllUser> AllUsers { get; set; }
         public DbSet<Boundary> Boundarys { get; set; }
 
     }

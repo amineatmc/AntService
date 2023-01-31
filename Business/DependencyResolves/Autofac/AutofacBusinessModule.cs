@@ -21,8 +21,8 @@ namespace Business.DependencyResolves.Autofac
         protected override void Load(ContainerBuilder builder)
         {
 
-            builder.RegisterType<UserManager>().As<IUserService>();
-            builder.RegisterType<EfUser>().As<IUser>();
+            builder.RegisterType<AllUserManager>().As<IAllUserService>();
+            builder.RegisterType<EfAllUser>().As<IAllUser>();
 
             builder.RegisterType<EfBoundaryDal>().As<IBoundaryDal>();
             builder.RegisterType<BoundaryManager>().As<IBoundaryService>();

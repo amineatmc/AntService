@@ -18,39 +18,39 @@ using System.Threading.Tasks;
 
 namespace Business.Concrete
 {
-    public class UserManager : IUserService
+    public class AllUserManager : IAllUserService
     {
-        private readonly IUser _userDal;
-        public UserManager(IUser userDal)
+        private readonly IAllUser _userDal;
+        public AllUserManager(IAllUser userDal)
         {
             _userDal= userDal;
         }
-        public void Add(User user)
+        public void Add(AllUser user)
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<List<User>> GetAll()
+        public IDataResult<List<AllUser>> GetAll()
         {
-            return new SuccessDataResult<List<User>>(_userDal.GetList());
+            return new SuccessDataResult<List<AllUser>>(_userDal.GetList());
         }
 
-        public IDataResult<User> GetbyId(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<OperationClaim> GetClaims(User user)
+        public IDataResult<AllUser> GetbyId(int id)
         {
             throw new NotImplementedException();
         }
 
-        public IDataResult<List<User>> GetList(int id)
+        public List<OperationClaim> GetClaims(AllUser user)
         {
             throw new NotImplementedException();
         }
 
-        public User GetUserPhone(string phone)
+        public IDataResult<List<AllUser>> GetList(int id)
+        {
+            throw new NotImplementedException();
+        }
+
+        public AllUser GetUserPhone(string phone)
         {
             throw new NotImplementedException();
         }

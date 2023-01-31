@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Aspects;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
@@ -24,6 +25,8 @@ namespace Business.Concrete
             throw new NotImplementedException();
         }
 
+
+       // [SecuredOperation("1")]
         public IDataResult<List<Boundary>> GetAll()
         {
             return new SuccessDataResult<List<Boundary>>(_boundrayDal.GetList());
@@ -31,7 +34,7 @@ namespace Business.Concrete
 
         public IDataResult<Boundary> GetByStationId(int id)
         {
-            var result = _boundrayDal.Get(x=>x.StationId==id);
+            var result = _boundrayDal.Get(x=>x.StationID==id);
             if (result!=null)
             {
                 return new SuccessDataResult<Boundary>(result);
