@@ -6,14 +6,14 @@ using Entities.Concrete;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfUser : EfEntityRepositoryBase<User, AntTaksiContextDb>, IUser
+    public class EfAllUser : EfEntityRepositoryBase<AllUser, AntTaksiContextDb>, IAllUser
     {
-        public List<OperationClaim> GetClaims(User user)
+        public List<OperationClaim> GetClaims(AllUser user)
         {
             throw new NotImplementedException();
         }
 
-        public List<User> GetListByUserId(int id)
+        public List<AllUser> GetListByUserId(int id)
         {
             throw new NotImplementedException();
         }

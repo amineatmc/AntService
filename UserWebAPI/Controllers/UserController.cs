@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserWebAPI.Controllers
@@ -8,8 +9,8 @@ namespace UserWebAPI.Controllers
     public class UserController : ControllerBase
     {
 
-        IUserService _userService;
-        public UserController(IUserService userService)
+        IAllUserService _userService;
+        public UserController(IAllUserService userService)
         {
             _userService= userService;
         }
@@ -23,6 +24,6 @@ namespace UserWebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest();
-        }
+        }      
     }
 }

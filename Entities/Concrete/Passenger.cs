@@ -1,23 +1,24 @@
-﻿using System.Reflection.Metadata.Ecma335;
+﻿using Entities.Concrete;
+using System.Reflection.Metadata.Ecma335;
 
 namespace AntalyaTaksiAccount.Models
 {
     public class Passenger
     {
         public int PassengerID { get; set; }
-        public string? Name { get; set; }
-        public string? Surname { get; set; }
-        public string MailAdress { get; set; }
-        public string Phone { get; set; }
-        public string Password { get; set; }
-        public string? ProfilePhotoPath { get; set; }
-        public int MailVerify { get; set; }
-        public int ResetPasswordVerify { get; set; }
-        public DateTime InsertedDate { get; set; }
-        public int? GenderID { get; set; }
-        public Gender Gender { get; set; }
-        public DateTime PasswordChangeDate { get; set; }
-        public int PasswordExpiration { get; set; }
+
+        //tc
+        public string IdNo { get; set; }
+        public DateTime Birthday { get; set; }
+        public bool Pet { get; set; }
+        public bool Travel { get; set; }
+        public bool Disabled { get; set; }
+        public bool Banned { get; set; }
+        public string Lang { get; set; }
+        public string Lat { get; set; }
+        public DateTime Created { get; set; }
+        public int? AllUserID { get; set; }
+        public AllUser AllUser { get; set; }
         public int Activity { get; set; }
 
     }
