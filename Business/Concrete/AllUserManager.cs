@@ -25,9 +25,13 @@ namespace Business.Concrete
         {
             _userDal= userDal;
         }
-        public void Add(AllUser user)
+
+        public async Task<IResult> Add(AllUser entity)
         {
-            throw new NotImplementedException();
+            //entity.CreatedDate= DateTime.Now;
+            //entity.UserType = 1;
+            _userDal.Add(entity);
+            return new SuccessResult();
         }
 
         public IDataResult<List<AllUser>> GetAll()

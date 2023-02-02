@@ -21,17 +21,6 @@ namespace UserWebAPI.Controllers
             _contextAccessor = ServiceTool.ServiceProvider.GetService<IHttpContextAccessor>();
         }
 
-        private object typpe()
-        {
-            var token = _contextAccessor.HttpContext.Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
-
-            var handler = new JwtSecurityTokenHandler();
-            var jwtSecurityToken = handler.ReadJwtToken(token);
-            
-            var userType = jwtSecurityToken.Claims.ToList()[3].Value;
-            return userType;
-        }
-
 
         [HttpGet("[action]")]
         public IActionResult GetAll() 

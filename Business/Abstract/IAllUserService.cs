@@ -9,7 +9,10 @@ namespace Business.Abstract
     
         IDataResult<List<AllUser>> GetList(int id);
         List<OperationClaim> GetClaims(AllUser user);
-        void Add(AllUser user);
+      // void Add(AllUser user);
+
+        Task<IResult> Add(AllUser entity);
+
         AllUser GetUserPhone(string phone);
         IDataResult<AllUser> GetbyId(int id);
         IDataResult<List<AllUser>> GetAll();

@@ -24,6 +24,12 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<VehicleOwner> VehicleOwners { get; set; }
         public DbSet<AllUser> AllUsers { get; set; }
         public DbSet<Boundary> Boundarys { get; set; }
+        public DbSet<TravelHistory> TravelHistories { get; set; }
+        public DbSet<DriverRequest>DriverRequests { get; set; }
+        public DbSet<PassengerRequest>PassengerRequests { get; set; }
+        public DbSet<StationRequest>StationRequests { get; set; }
+        public DbSet<PaymentType> PaymentTypes{ get; set; }
+        public DbSet<Reservation> Reservations{ get; set; }
 
     }
 }

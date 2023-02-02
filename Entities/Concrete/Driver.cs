@@ -1,13 +1,13 @@
-﻿using Entities.Concrete;
+﻿using Core.Entities;
+using Entities.Concrete;
 using Microsoft.AspNet.Identity.EntityFramework;
 using static System.Collections.Specialized.BitVector32;
 
 namespace AntalyaTaksiAccount.Models
 {
-    public class Driver
+    public class Driver : IEntity
     {
         public int DriverID { get; set; }
-
         public string IdNo { get; set; }
         public string DriverLicenseNo { get; set; }
         public int? Rating { get; set; }

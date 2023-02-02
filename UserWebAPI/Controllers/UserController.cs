@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserWebAPI.Controllers
@@ -23,9 +24,6 @@ namespace UserWebAPI.Controllers
                 return Ok(result);
             }
             return BadRequest();
-        }
-
-
-      
+        }      
     }
 }
