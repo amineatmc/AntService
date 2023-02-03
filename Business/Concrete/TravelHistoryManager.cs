@@ -59,5 +59,15 @@ namespace Business.Concrete
         {
             return new SuccessDataResult<List<TravelHistory>>(_travelHistoryDal.GetList().Where(x => x.PassengerId == id).ToList());
         }
+
+        public IDataResult<TravelHistory> Update(TravelHistoryUpdateDto entity)
+        {
+           var data = _travelHistoryDal.Get(x=>x.RequestId== entity.RequestId);
+            data.Status = entity.Status;
+            data.Redirect=entity.Redirect;
+            _travelHistoryDal.Update(data);
+            return new SuccessDataResult<TravelHistory>(data);
+
+        }
     }
 }

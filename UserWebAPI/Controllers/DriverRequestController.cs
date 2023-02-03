@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Core.Utilities.Result.Concrete;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using System.Security.Claims;
 
@@ -47,6 +48,18 @@ namespace UserWebAPI.Controllers
                 return BadRequest();
             }
             return Ok(history);
+        }
+
+
+        [HttpPost("[action]")]
+        public IActionResult Update(DriverRequestUpdateDto entity)
+        {
+            var data = _driverRequestService.Update(entity);
+            if (!data.Success)
+            {
+                return BadRequest();
+            }
+            return Ok(data);
         }
     }
 }

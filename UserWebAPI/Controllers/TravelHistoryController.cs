@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System.IdentityModel.Tokens.Jwt;
@@ -146,7 +147,6 @@ namespace UserWebAPI.Controllers
             return BadRequest("Yetki Yok");
         }
 
-
         [HttpGet("[action]")]
         public IActionResult GetByRequestId(string id)
         {
@@ -158,6 +158,16 @@ namespace UserWebAPI.Controllers
             return BadRequest();
         }
 
+        [HttpPost("[action]")]
+        public IActionResult Update(TravelHistoryUpdateDto entity)
+        {
+            var result= _travelHistoryService.Update(entity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
 
 
     }

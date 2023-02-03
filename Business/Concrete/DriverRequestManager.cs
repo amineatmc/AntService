@@ -3,6 +3,7 @@ using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,15 @@ namespace Business.Concrete
         public IDataResult<List<DriverRequest>> GetbyRequestId(string id)
         {
             return new SuccessDataResult<List<DriverRequest>>(_driverRequest.GetList().Where(x => x.RequestId == id).ToList());
+        }
+
+        public IDataResult<DriverRequest> Update(DriverRequestUpdateDto entity)
+        {
+            var data = _driverRequest.Get(x=>x.DriverRequestID== entity.DriverRequestID);
+            data.Status= entity.Status;
+            data.RedirectionStatus= entity.RedirectionStatus;
+            _driverRequest.Update(data);
+            return new SuccessDataResult<DriverRequest>(data);
         }
     }
 }
