@@ -12,5 +12,6 @@ namespace Business.Abstract
     {
         Task<IResult> Add(StationRequest entity);
         IDataResult<StationRequest> GetbyId(int id);
+
     }
 }

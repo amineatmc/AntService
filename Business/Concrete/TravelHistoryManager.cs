@@ -3,6 +3,7 @@ using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -47,6 +48,11 @@ namespace Business.Concrete
         public IDataResult<List<TravelHistory>> GetByPassengerId(int id)
         {
             return new SuccessDataResult<List<TravelHistory>>(_travelHistoryDal.GetList().Where(x => x.PassengerId == id).ToList());
+        }
+
+        public IDataResult<List<TravelHistoryListDto>> GetByRequestId(string id)
+        {
+            return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().Where(x=>x.RequestId==id).ToList());
         }
 
         public IDataResult<List<TravelHistory>> PassengerTravel(int id)

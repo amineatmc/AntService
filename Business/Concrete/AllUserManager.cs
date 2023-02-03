@@ -8,6 +8,7 @@ using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using System;
@@ -24,24 +25,16 @@ namespace Business.Concrete
         public AllUserManager(IAllUser userDal)
         {
             _userDal= userDal;
-        }
-
-        public async Task<IResult> Add(AllUser entity)
-        {
-            //entity.CreatedDate= DateTime.Now;
-            //entity.UserType = 1;
-            _userDal.Add(entity);
-            return new SuccessResult();
-        }
+        }       
 
         public IDataResult<List<AllUser>> GetAll()
         {
             return new SuccessDataResult<List<AllUser>>(_userDal.GetList());
         }
 
-        public IDataResult<AllUser> GetbyId(int id)
+        public IDataResult<List<AllUser>> GetbyId(int id)
         {
-            throw new NotImplementedException();
+            return new SuccessDataResult<List<AllUser>>(_userDal.GetList().Where(x => x.AllUserID == id).ToList());
         }
 
         public List<OperationClaim> GetClaims(AllUser user)

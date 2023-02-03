@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,6 +17,7 @@ namespace Business.Abstract
         IDataResult<List<TravelHistory>> GetByDriverId(int id);
         IDataResult<List<TravelHistory>> PassengerTravel(int id);
         IDataResult<List<TravelHistory>> DriverTravel(int id);
+        IDataResult<List<TravelHistoryListDto>> GetByRequestId(string id);
 
         
 
