@@ -67,6 +67,8 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<StationVehicleManager>().As<IStationVehicleService>();
             builder.RegisterType<EfStationVehicleDal>().As<IStationVehicleDal>();
 
+            builder.RegisterType<StationManager>().As<IStationService>();
+            builder.RegisterType<EfStationDal>().As<IStationDal>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

@@ -1,6 +1,9 @@
 ﻿using Business.Abstract;
 using Core.Utilities.Result.Abstract;
+using Core.Utilities.Result.Concrete;
+using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,9 +14,21 @@ namespace Business.Concrete
 {
     public class StationManager : IStationService
     {
-        public IDataResult<List<Station>> GetAll()
+        IStationDal _stationDal;
+        public StationManager(IStationDal stationDal)
         {
-            throw new NotImplementedException();
+            _stationDal = stationDal;
+        }
+
+        public IDataResult<List<StationListDto>> GetAll()
+        {
+           return new SuccessDataResult<List<StationListDto>>(_stationDal.GetStationList().ToList());
+        }
+
+        public IDataResult<List<StationListDto>> GetByStationId(int id)
+        {
+            return new SuccessDataResult<List<StationListDto>>(_stationDal.GetStationList().Where(x=>x.StationID==id).ToList());
+
         }
     }
 }
