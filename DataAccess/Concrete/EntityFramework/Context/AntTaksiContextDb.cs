@@ -30,6 +30,8 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<StationRequest>StationRequests { get; set; }
         public DbSet<PaymentType> PaymentTypes{ get; set; }
         public DbSet<Reservation> Reservations{ get; set; }
+        public DbSet<Chat> Chats { get; set; }
+        public DbSet<StationVehicle> StationVehicles { get; set; }
 
     }
 }

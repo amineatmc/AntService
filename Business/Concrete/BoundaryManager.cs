@@ -22,7 +22,9 @@ namespace Business.Concrete
 
         public IResult Add(Boundary boundary)
         {
-            throw new NotImplementedException();
+            boundary.CreatedDate = DateTime.Now;
+            _boundrayDal.Add(boundary);
+            return new SuccessResult();
         }
 
 

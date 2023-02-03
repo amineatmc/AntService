@@ -18,6 +18,7 @@ namespace Entities.Concrete
         public string Ip { get; set; }
         public DateTime CreatedDate { get; set; }
         public int? AllUserID { get; set; }
+
         //public AllUser AllUser { get; set; }
         public int Activity { get; set; }
     }

@@ -61,6 +61,12 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<VehicleOwnerManager>().As<IVehicleOwnerService>();
             builder.RegisterType<EfVehicleOwnerDal>().As<IVehicleOwnerDal>();
 
+            builder.RegisterType<ChatManager>().As<IChatService>();
+            builder.RegisterType<EfChatDal>().As<IChatDal>();
+
+            builder.RegisterType<StationVehicleManager>().As<IStationVehicleService>();
+            builder.RegisterType<EfStationVehicleDal>().As<IStationVehicleDal>();
+
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 

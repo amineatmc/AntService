@@ -23,5 +23,7 @@ namespace Entities.Concrete
         public string FinishLocation { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime FinishTime { get; set; }
+        public bool Redirect { get; set; }
+        public string Status { get; set; }
     }
 }

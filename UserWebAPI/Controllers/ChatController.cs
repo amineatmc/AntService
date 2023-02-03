@@ -26,7 +26,7 @@ namespace UserWebAPI.Controllers
             return BadRequest();
         }
 
-        [HttpPost("[action]")]
+        [HttpGet("[action]")]
         public IActionResult GetReqId(string id)
         {
             var result = _chatService.GetByRequestId(id);

@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Net.Http.Headers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
+using Entities.Concrete;
 
 namespace UserWebAPI.Controllers
 {
@@ -44,9 +45,20 @@ namespace UserWebAPI.Controllers
         }
 
         [HttpGet("[action]")]
-        public IActionResult GetById(int id)
+        public IActionResult GetByStationId(int id)
         {
             var result = _boundaryService.GetByStationId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("[action]")]
+        public IActionResult Add(Boundary boundary)
+        {
+            var result = _boundaryService.Add(boundary);
             if (result.Success)
             {
                 return Ok(result);
