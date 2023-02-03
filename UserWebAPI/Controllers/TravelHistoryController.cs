@@ -83,21 +83,20 @@ namespace UserWebAPI.Controllers
         public IActionResult GetByTravelId(int id)
         {
             /*Station Yetkisi*/
-            var token = _contextAccessor.HttpContext.Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
-            var handler = new JwtSecurityTokenHandler();
-            var jwtSecurityToken = handler.ReadJwtToken(token);
-            var userType = jwtSecurityToken.Claims.ToList()[3].Value;
-            // var AllUserId = jwtSecurityToken.Claims.ToList()[1].Value;           
-            if (userType == "3")
-            {
+            //var token = _contextAccessor.HttpContext.Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            //var handler = new JwtSecurityTokenHandler();
+            //var jwtSecurityToken = handler.ReadJwtToken(token);
+            //var userType = jwtSecurityToken.Claims.ToList()[3].Value;
+            //if (userType == "3")
+            //{
                 var history = _travelHistoryService.GetbyId(id);
                 if (!history.Success)
                 {
                     return BadRequest();
                 }
                 return Ok(history);
-            }
-            return BadRequest();
+            //}
+            //return BadRequest();
         }
 
         [HttpGet("[action]")]
@@ -147,6 +146,17 @@ namespace UserWebAPI.Controllers
             return BadRequest("Yetki Yok");
         }
 
+
+        [HttpGet("[action]")]
+        public IActionResult GetByRequestId(string id)
+        {
+            var result = _travelHistoryService.GetByRequestId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
 
 
 

@@ -1,6 +1,7 @@
 ﻿using Core.Entities.Concrete;
 using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 
 namespace Business.Abstract
 {
@@ -11,10 +12,10 @@ namespace Business.Abstract
         List<OperationClaim> GetClaims(AllUser user);
       // void Add(AllUser user);
 
-        Task<IResult> Add(AllUser entity);
+       //Task<IResult> Add(AllUser entity);
 
         AllUser GetUserPhone(string phone);
-        IDataResult<AllUser> GetbyId(int id);
+        IDataResult<List<AllUser>> GetbyId(int id);
         IDataResult<List<AllUser>> GetAll();
     }
 }
