@@ -9,9 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IStationDal: IEntityRepository<Station>
+    public interface IStationVehicleDal:IEntityRepository<StationVehicle>
     {
-        List<StationListDto> GetStationList();
+        List<StationVehicleListDto> GetStationVehicleList();
+        List<StVehicleListDto> GetStVehicleList();
+  
 
     }
 }

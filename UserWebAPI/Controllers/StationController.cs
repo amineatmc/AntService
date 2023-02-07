@@ -1,5 +1,4 @@
 ﻿using Business.Abstract;
-using Entities.Concrete;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserWebAPI.Controllers
@@ -7,29 +6,31 @@ namespace UserWebAPI.Controllers
 
     [Route("api/[controller]")]
     [ApiController]
-    public class ChatController : ControllerBase
+    public class StationController : ControllerBase
     {
-        IChatService _chatService;
-        public ChatController(IChatService chatService)
+        IStationService _stationService;
+        public StationController(IStationService stationService)
         {
-            _chatService = chatService;
+            _stationService = stationService;
         }
 
-        [HttpPost("[action]")]
-        public IActionResult AddReq(Chat chat)
+
+        [HttpGet("[action]")]
+        public IActionResult GetList()
         {
-            var result = _chatService.Add(chat);
-            if (result.Result.Success)
+            var result= _stationService.GetAll();
+            if (result.Success)
             {
                 return Ok(result);
             }
             return BadRequest();
         }
 
+
         [HttpGet("[action]")]
-        public IActionResult GetReqId(string id)
+        public IActionResult GetByStationId(int id)
         {
-            var result = _chatService.GetByRequestId(id);
+            var result = _stationService.GetByStationId(id);
             if (result.Success)
             {
                 return Ok(result);

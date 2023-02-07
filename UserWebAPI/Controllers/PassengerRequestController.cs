@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserWebAPI.Controllers
@@ -45,6 +46,18 @@ namespace UserWebAPI.Controllers
                 return BadRequest();
             }
             return Ok(history);
+        }
+
+
+        [HttpPost("[action]")]
+        public IActionResult Update(PassengerRequestUpdateDto entity)
+        {
+            var data = _passengerRequestService.Update(entity);
+            if (!data.Success)
+            {
+                return BadRequest();
+            }
+            return Ok(data);
         }
     }
 }

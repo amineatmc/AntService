@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Business.Abstract
         Task<IResult> Add(PassengerRequest entity);
         IDataResult<PassengerRequest> GetbyId(int id);
         IDataResult<List<PassengerRequest>> GetbyRequestId(string id);
+        IDataResult<PassengerRequest> Update(PassengerRequestUpdateDto entity);
     }
 }

@@ -1,7 +1,7 @@
 ﻿using Entities.Concrete;
 using System.Reflection.Metadata.Ecma335;
 
-namespace AntalyaTaksiAccount.Models
+namespace Entities.Concrete
 {
     public class Passenger
     {
@@ -18,7 +18,7 @@ namespace AntalyaTaksiAccount.Models
         public string Lat { get; set; }
         public DateTime Created { get; set; }
         public int? AllUserID { get; set; }
-        public AllUser AllUser { get; set; }
+       // public AllUser AllUser { get; set; }
         public int Activity { get; set; }
 
     }

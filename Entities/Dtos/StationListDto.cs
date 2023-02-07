@@ -1,12 +1,14 @@
-﻿using System;
+﻿using Core.Entities;
+using Entities.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.Dtos
 {
-    public class Station
+    public class StationListDto : IDto
     {
         public int StationID { get; set; }
         public int StationNumber { get; set; }
@@ -18,8 +20,7 @@ namespace Entities.Concrete
         public string Ip { get; set; }
         public DateTime CreatedDate { get; set; }
         public int? AllUserID { get; set; }
-
-        //public AllUser AllUser { get; set; }
         public int Activity { get; set; }
+        public List<AllUser> AllUsers { get; set; }
     }
 }

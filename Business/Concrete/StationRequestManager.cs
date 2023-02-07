@@ -3,6 +3,7 @@ using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -34,6 +35,14 @@ namespace Business.Concrete
         {
             var result = _stationRequestDal.Get(x => x.StationRequestID == id);
             return new SuccessDataResult<StationRequest>(result);
+        }
+
+        public IDataResult<StationRequest> Update(StationRequestUpdateDto entity)
+        {
+            var data = _stationRequestDal.Get(x=>x.RequestId== entity.RequestId);
+            data.Status = entity.Status;
+            _stationRequestDal.Update(data);
+            return new SuccessDataResult<StationRequest>(data);
         }
     }
 }

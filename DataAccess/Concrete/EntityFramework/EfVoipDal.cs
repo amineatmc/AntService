@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Concrete.EntityFramework
 {
-    public class EfPassengerDal : EfEntityRepositoryBase<Passenger, AntTaksiContextDb>, IPassengerDal
+    public class EfVoipDal : EfEntityRepositoryBase<Voip, AntTaksiContextDb>, IVoipDal
     {
     }
 }

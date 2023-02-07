@@ -1,5 +1,4 @@
-﻿using AntalyaTaksiAccount.Models;
-using Core.DataAccess;
+﻿using Core.DataAccess;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -9,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IPassengerDal:IEntityRepository<Passenger>
+    public interface IVoipDal: IEntityRepository<Voip>
     {
     }
 }

@@ -4,37 +4,37 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace UserWebAPI.Controllers
 {
-
     [Route("api/[controller]")]
     [ApiController]
-    public class ChatController : ControllerBase
+    public class VoipController: ControllerBase
     {
-        IChatService _chatService;
-        public ChatController(IChatService chatService)
+        IVoipService _voipService;
+        public VoipController(IVoipService voipService)
         {
-            _chatService = chatService;
+           _voipService = voipService;
         }
 
+
         [HttpPost("[action]")]
-        public IActionResult AddReq(Chat chat)
+        public IActionResult Add(Voip voip)
         {
-            var result = _chatService.Add(chat);
+             var result= _voipService.Add(voip);
             if (result.Result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest();
+            return BadRequest(result);
         }
 
         [HttpGet("[action]")]
-        public IActionResult GetReqId(string id)
+        public IActionResult GetAll()
         {
-            var result = _chatService.GetByRequestId(id);
+            var result = _voipService.GetAll();
             if (result.Success)
             {
                 return Ok(result);
             }
-            return BadRequest();
+            return BadRequest(result);
         }
     }
 }
