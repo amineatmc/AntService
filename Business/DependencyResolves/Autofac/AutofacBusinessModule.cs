@@ -70,6 +70,9 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<StationManager>().As<IStationService>();
             builder.RegisterType<EfStationDal>().As<IStationDal>();
 
+            builder.RegisterType<VoipManager>().As<IVoipService>();
+            builder.RegisterType<EfVoipDal>().As<IVoipDal>();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()

@@ -8,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
-    public interface IPassengerService
+    public interface IVoipService 
     {
-      //  IDataResult<Passenger> GetAll(int id);
-
+        Task<IResult> Add(Voip entity);
+        IDataResult<List<Voip>> GetAll();
     }
 }

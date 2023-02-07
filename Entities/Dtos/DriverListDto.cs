@@ -19,6 +19,7 @@ namespace Entities.Dtos
         public DateTime BirthDay { get; set; }
         public bool Pet { get; set; }
         public int StationID { get; set; }
+       // public List<AllUser> Station { get; set; }
         public string Ip { get; set; }
         public bool Penalty { get; set; }
         public DateTime CreatedDate { get; set; }

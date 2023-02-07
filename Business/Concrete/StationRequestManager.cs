@@ -39,7 +39,7 @@ namespace Business.Concrete
 
         public IDataResult<StationRequest> Update(StationRequestUpdateDto entity)
         {
-            var data = _stationRequestDal.Get(x=>x.StationRequestID== entity.StationRequestID);
+            var data = _stationRequestDal.Get(x=>x.RequestId== entity.RequestId);
             data.Status = entity.Status;
             _stationRequestDal.Update(data);
             return new SuccessDataResult<StationRequest>(data);

@@ -16,14 +16,14 @@ using System.Threading.Tasks;
 namespace DataAccess.Concrete.EntityFramework
 {
     public class EfDriverDal : EfEntityRepositoryBase<Driver, AntTaksiContextDb>, IDriverDal
-    {
+    {    
         public List<DriverListDto> GetDrivers()
-        {
+        {            
             using (var context = new AntTaksiContextDb())
             {
-
                 var result = from driver in context.Drivers
                              join alluser in context.AllUsers on driver.AllUserID equals alluser.AllUserID
+                             join station in context.Stations on driver.StationID equals station.StationID
                              select new DriverListDto
                              {
                                  DriverID = driver.DriverID,
@@ -33,13 +33,14 @@ namespace DataAccess.Concrete.EntityFramework
                                  BirthDay = driver.BirthDay,
                                  Pet = driver.Pet,
                                  StationID = driver.StationID,
+                                 AllUserID = driver.AllUserID,
+                                // Station = context.AllUsers.Where(x => x.AllUserID == driver.StationID).ToList(),
                                  Ip = driver.Ip,
                                  Penalty = driver.Penalty,
                                  CreatedDate = driver.CreatedDate,
                                  RoleID = driver.RoleID,
                                  Activity = driver.Activity,
                                  AllUsers = context.AllUsers.Where(x => x.AllUserID == driver.AllUserID).ToList(),
-
                              };
                 return result.ToList();
             }

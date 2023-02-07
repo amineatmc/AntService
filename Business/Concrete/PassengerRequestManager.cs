@@ -45,7 +45,7 @@ namespace Business.Concrete
 
         public IDataResult<PassengerRequest> Update(PassengerRequestUpdateDto entity)
         {
-            var data = _passengerRequestDal.Get(x=>x.PassengerRequestID==entity.PassengerRequestID);
+            var data = _passengerRequestDal.Get(x=>x.RequestId==entity.RequestId);
             data.Status = entity.Status;
             _passengerRequestDal.Update(data);
             return new SuccessDataResult<PassengerRequest>(data);

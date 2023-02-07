@@ -9,7 +9,7 @@ namespace Entities.Dtos
 {
     public class PassengerRequestUpdateDto: IDto
     {
-        public int PassengerRequestID { get; set; }    
+        public string RequestId { get; set; }    
         public string Status { get; set; }
     }
 }

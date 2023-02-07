@@ -9,7 +9,7 @@ namespace Entities.Dtos
 {
     public class DriverRequestUpdateDto:IDto
     {
-        public int DriverRequestID { get; set; }
+        public string RequestID { get; set; }
         public string Status { get; set; }
         public bool RedirectionStatus { get; set; }
 

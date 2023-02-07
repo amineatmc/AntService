@@ -44,7 +44,7 @@ namespace Business.Concrete
 
         public IDataResult<DriverRequest> Update(DriverRequestUpdateDto entity)
         {
-            var data = _driverRequest.Get(x=>x.DriverRequestID== entity.DriverRequestID);
+            var data = _driverRequest.Get(x=>x.RequestId== entity.RequestID);
             data.Status= entity.Status;
             data.RedirectionStatus= entity.RedirectionStatus;
             _driverRequest.Update(data);
