@@ -22,6 +22,5 @@ namespace Entities.Concrete
         public int? MailVerify { get; set; }
         public int Activity { get; set; }
 
-
     }
 }

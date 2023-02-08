@@ -63,21 +63,21 @@ namespace UserWebAPI.Controllers
         {
             /*Station Yetkisi*/
 
-            var token = _contextAccessor.HttpContext.Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
-            var handler = new JwtSecurityTokenHandler();
-            var jwtSecurityToken = handler.ReadJwtToken(token);
-            var userType = jwtSecurityToken.Claims.ToList()[3].Value;
-           // var AllUserId = jwtSecurityToken.Claims.ToList()[1].Value;           
-            if (userType == "3")
-            {
+           // var token = _contextAccessor.HttpContext.Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+           // var handler = new JwtSecurityTokenHandler();
+           // var jwtSecurityToken = handler.ReadJwtToken(token);
+           // var userType = jwtSecurityToken.Claims.ToList()[3].Value;
+           //// var AllUserId = jwtSecurityToken.Claims.ToList()[1].Value;           
+           // if (userType == "3")
+           // {
                 var history = _travelHistoryService.GetByDriverId(id);
                 if (!history.Success)
                 {
                     return BadRequest();
                 }
                 return Ok(history);
-            }
-            return BadRequest("Yetki Yok");
+            //}
+            //return BadRequest("Yetki Yok");
         }
 
         [HttpGet("[action]")]
@@ -136,7 +136,7 @@ namespace UserWebAPI.Controllers
 
             var passengerId = _passengerDal.Get(x => x.AllUserID == Convert.ToInt32(AllUserId));
 
-            if (userType == "Passenger")
+            if (userType == "User")
             {
                 var history = _travelHistoryService.PassengerTravel(Convert.ToInt32(passengerId.PassengerID));
                 if (!history.Success)

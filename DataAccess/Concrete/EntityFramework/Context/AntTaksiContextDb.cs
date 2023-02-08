@@ -1,6 +1,7 @@
 ﻿using AntalyaTaksiAccount.Models;
 using Core.Entities.Concrete;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
@@ -16,6 +17,10 @@ namespace DataAccess.Concrete.EntityFramework.Context
             //optionsBuilder.UseSqlServer(@"Server=192.168.101.3; Database=patronDB; User Id=sa; Password=300881_?;");
             optionsBuilder.UseSqlServer(@"Server=192.168.2.62;Database=ATAccountDB;User Id=sa;Password=Bilge03!;TrustServerCertificate=True");
            // optionsBuilder.UseSqlServer(@"Server = tcp:antalyadeneme.database.windows.net, 1433; Initial Catalog = antalyatest; Persist Security Info = False; User ID = admin_antalya; Password =Bilge03!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
+        }
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<UserALL>().HasNoKey().ToView(null);
         }
 
         public DbSet<Vehicle> Vehicles { get; set; }
@@ -36,6 +41,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<Chat> Chats { get; set; }
         public DbSet<StationVehicle> StationVehicles { get; set; }
         public DbSet<Voip> Voips { get; set; }
+        public DbSet<UserALL> UserALL { get; set; }
 
     }
 }
