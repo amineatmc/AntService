@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,6 @@ namespace Business.Abstract
     public interface IPassengerService
     {
       //  IDataResult<Passenger> GetAll(int id);
-
+      IDataResult<List<PassengerListDto>>GetById(int id);
     }
 }
