@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,7 +12,9 @@ namespace Business.Abstract
     public interface IBoundaryService
     {
         IDataResult<List<Boundary>> GetAll();
-        IDataResult<Boundary> GetByStationId(int id);
+        IDataResult<List<Boundary>> GetByStationId(int id);
         IResult Add(Boundary boundary);
+        IDataResult<Boundary> Update(BoundaryUpdateDto boundary);
+        IResult Delete(int id);
     }
 }

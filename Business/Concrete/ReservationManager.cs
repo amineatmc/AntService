@@ -29,35 +29,47 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult Delete(int id)
+        {
+            var result = _reservationDal.Get(x => x.ReservationID == id && x.IsDeleted == false);
+            if (result != null)
+            {
+                result.IsDeleted = true;
+                _reservationDal.Update(result);
+                return new SuccessResult("Kayıt siilinidi");
+            }
+            return new ErrorResult();
+        }
+
         public IDataResult<List<Reservation>> GetByDriverId(int id)
         {
-            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.DriverID == id).ToList());
+            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.DriverID == id && x.IsDeleted==false).ToList());
         }
 
         public IDataResult<List<Reservation>> GetByDriverIdActive(int id)
         {
-            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.DriverID == id && x.IsActive == true).ToList());
+            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.DriverID == id && x.IsActive == true && x.IsDeleted==false).ToList());
         }
 
         public IDataResult<Reservation> GetbyId(int id)
         {          
-            return new SuccessDataResult<Reservation>(_reservationDal.Get(x => x.ReservationID == id));
+            return new SuccessDataResult<Reservation>(_reservationDal.Get(x => x.ReservationID == id && x.IsDeleted == false));
         }
 
         public IDataResult<List<Reservation>> GetByPassengerId(int id)
         {
-            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.PassengerID == id).ToList());
+            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.PassengerID == id && x.IsDeleted == false).ToList());
         }
 
         public IDataResult<List<Reservation>> GetByStationId(int id)
         {
-            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.StationID == id).ToList());
+            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.StationID == id && x.IsDeleted == false).ToList());
 
         }
 
         public IDataResult<List<Reservation>> GetByStationIdActive(int id)
         {
-            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.StationID == id && x.IsActive==false).ToList());
+            return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.StationID == id && x.IsActive==false && x.IsDeleted==false).ToList());
         }
 
         public IDataResult<List<Reservation>> ReservationAssignment(ReservationAssignmentDto entity)

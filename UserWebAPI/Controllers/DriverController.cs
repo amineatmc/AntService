@@ -52,7 +52,7 @@ namespace UserWebAPI.Controllers
         //    return BadRequest();
         //}
 
-        [HttpPost("[action]")]
+        [HttpPut("[action]")]
         public IActionResult Update(DriverUpdateDto driverUpdateDto)
         {
             var result = _driverService.Update(driverUpdateDto);

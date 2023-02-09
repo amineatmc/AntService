@@ -15,6 +15,7 @@ namespace Business.Abstract
         IDataResult<List<DriverVehicleListDto>> GetAll();
         IDataResult<List<DriverVehicleListDto>> GetByVehicleId(int id);
         IDataResult<List<DriverVehicleListDto>> GetByDriverId(int id);
+        IResult Delete(int id);
 
     }
 }

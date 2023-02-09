@@ -19,6 +19,7 @@ namespace Business.Abstract
         IDataResult<List<Reservation>> GetByStationIdActive(int id);
         IDataResult<List<Reservation>> GetByDriverIdActive(int id);
         IDataResult<List<Reservation>> ReservationAssignment(ReservationAssignmentDto entity);
+        IResult Delete (int id);
 
         
     }

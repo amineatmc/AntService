@@ -1,12 +1,13 @@
-﻿using System;
+﻿using Core.Entities;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Entities.Concrete
+namespace Entities.Dtos
 {
-    public class VehicleOwner
+    public class VehicleOwnerUpdateDto:IDto
     {
         public int VehicleOwnerID { get; set; }
         public string Name { get; set; }
@@ -15,10 +16,5 @@ namespace Entities.Concrete
         public string Mail { get; set; }
         public string TCNo { get; set; }
         public string Birthday { get; set; }
-        public string Ip { get; set; }
-        public string CreatedUser  { get; set; }
-        public DateTime CreatedDate { get; set; }
-        public int Activity { get; set; }
-        public bool IsDeleted { get; set; }
     }
 }

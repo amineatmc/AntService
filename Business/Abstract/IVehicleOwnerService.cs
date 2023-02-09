@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,6 +16,8 @@ namespace Business.Abstract
         IDataResult<List<VehicleOwner>> GetAll();
         IDataResult<VehicleOwner> GetbyTc(string tc);
         IDataResult<VehicleOwner> GetbyPhone(string phone);
+        IResult Update(VehicleOwnerUpdateDto entity);
+        IResult Delete(int id);
 
     }
 }

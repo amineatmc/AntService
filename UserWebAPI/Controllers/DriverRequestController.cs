@@ -51,7 +51,7 @@ namespace UserWebAPI.Controllers
         }
 
 
-        [HttpPost("[action]")]
+        [HttpPut("[action]")]
         public IActionResult Update(DriverRequestUpdateDto entity)
         {
             var data = _driverRequestService.Update(entity);

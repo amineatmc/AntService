@@ -1,5 +1,6 @@
 ﻿using Core.Utilities.Result.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,5 +14,6 @@ namespace Business.Abstract
         Task<IResult> Add(Vehicle entity);
         IDataResult<Vehicle> GetbyId(int id);
         IDataResult<List<Vehicle>> GetAll();
+        IDataResult<VehicleUpdateDto> Update(VehicleUpdateDto vehicleUpdateDto);
     }
 }

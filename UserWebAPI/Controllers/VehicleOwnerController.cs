@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserWebAPI.Controllers
@@ -63,6 +64,28 @@ namespace UserWebAPI.Controllers
         public IActionResult GetAll()
         {
             var result = _vehicleOwnerService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpPut("[action]")]
+        public IActionResult Update(VehicleOwnerUpdateDto vehicleOwnerUpdateDto)
+        {
+            var result = _vehicleOwnerService.Update(vehicleOwnerUpdateDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("[action]")]
+        public IActionResult Delete(int id)
+        {
+            var result = _vehicleOwnerService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);

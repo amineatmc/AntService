@@ -12,5 +12,6 @@ namespace Business.Abstract
     {
         Task<IResult> Add(PaymentType entity);
         IDataResult<PaymentType> GetbyId(int id);
+        IResult Delete(int id);
     }
 }

@@ -7,6 +7,7 @@ using Microsoft.Net.Http.Headers;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using Entities.Concrete;
+using Entities.Dtos;
 
 namespace UserWebAPI.Controllers
 {
@@ -59,6 +60,31 @@ namespace UserWebAPI.Controllers
         public IActionResult Add(Boundary boundary)
         {
             var result = _boundaryService.Add(boundary);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+
+        [HttpPut("[action]")]
+        public IActionResult Update(BoundaryUpdateDto boundary)
+        {
+           
+            var result = _boundaryService.Update(boundary);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("[action]")]
+        public IActionResult Delete(int id)
+        {
+
+            var result = _boundaryService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);

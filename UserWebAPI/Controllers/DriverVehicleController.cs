@@ -61,5 +61,16 @@ namespace UserWebAPI.Controllers
             }
             return Ok(entity);
         }
+
+        [HttpDelete("[action]")]
+        public IActionResult Delete(int id)
+        {
+            var entity = _driverVehicleService.Delete(id);
+            if (!entity.Success)
+            {
+                return BadRequest();
+            }
+            return Ok(entity);
+        }
     }
 }

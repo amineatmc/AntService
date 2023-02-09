@@ -83,7 +83,6 @@ namespace UserWebAPI.Controllers
         }
         // GetByStationIdActive
 
-
         [HttpGet("[action]")]
         public IActionResult GetByStationIdActive(int id)
         {
@@ -99,6 +98,17 @@ namespace UserWebAPI.Controllers
         public IActionResult GetByDriverIdActive(int id)
         {
             var result = _reservationService.GetByDriverIdActive(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpDelete("[action]")]
+        public IActionResult Delete(int id)
+        {
+            var result = _reservationService.Delete(id);
             if (result.Success)
             {
                 return Ok(result);
