@@ -26,6 +26,18 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
+        public IResult Delete(int id)
+        {
+            var entity = _driverVehicleDal.Get(x=>x.DriverVehicleID== id && x.IsDeleted==false);
+            if (entity!=null)
+            {
+                entity.IsDeleted = true;
+                _driverVehicleDal.Update(entity);
+                return new SuccessResult("Kayıt Silindi");
+            }
+            return new ErrorResult("Kayıt Yok");
+        }
+
         public IDataResult<List<DriverVehicleListDto>> GetAll()
         {
             return new SuccessDataResult<List<DriverVehicleListDto>>(_driverVehicleDal.GetDriverVehicles().ToList());

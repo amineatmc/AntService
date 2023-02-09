@@ -26,13 +26,13 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  DriverVehicleID = driverVeh.DriverVehicleID,
                                  CreatedDate = driverVeh.CreatedDate,
-                                 Activity=driverVeh.Activity,
+                                 IsDeleted=driverVeh.IsDeleted,
                                  DriverId=driverVeh.DriverID,
                                  VehicleId=driverVeh.VehicleID,
                                  Drivers= context.Drivers.Where(x => x.DriverID == driverVeh.DriverID).ToList(),                            
                                  Vehicles = context.Vehicles.Where(x => x.VehicleID == driverVeh.VehicleID).ToList(),
                              };
-                return result.ToList();
+                return result.Where(x=>x.IsDeleted==false).ToList();
             }
         }
     }

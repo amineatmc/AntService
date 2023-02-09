@@ -29,9 +29,21 @@ namespace Business.Concrete
             return new ErrorResult();
         }
 
+        public IResult Delete(int id)
+        {
+            var entity = _paymentTypeDal.Get(x => x.PaymentTypeID == id && x.IsDeleted==false);
+            if (entity != null)
+            {
+                entity.IsDeleted = true;
+                _paymentTypeDal.Update(entity);
+                return new SuccessResult("Kayıt Silindi");
+            }
+            return new ErrorResult("Kayıt Yok");
+        }
+
         public IDataResult<PaymentType> GetbyId(int id)
         {
-            var result = _paymentTypeDal.Get(x => x.PaymentTypeID == id && x.Status==true);
+            var result = _paymentTypeDal.Get(x => x.PaymentTypeID == id && x.IsDeleted==false);
             return new SuccessDataResult<PaymentType>(result);
         }
     }

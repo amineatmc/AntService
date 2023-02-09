@@ -11,7 +11,7 @@ namespace Entities.Dtos
     public class DriverVehicleListDto :IDto
     {
         public int DriverVehicleID { get; set; }       
-        public int Activity { get; set; }
+        public bool IsDeleted{ get; set; }
         public int DriverId { get; set; }
         public int VehicleId { get; set; }
         public DateTime CreatedDate { get; set; }

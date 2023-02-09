@@ -7,7 +7,9 @@ using Core.Utilities.IoC;
 using Core.Utilities.Security.Encryption;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
+using System.Text;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -19,21 +21,23 @@ IConfiguration configuration = builder.Configuration;
 
 
 builder.Services.AddControllers(
-    options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
+ options => options.SuppressImplicitRequiredAttributeForNonNullableReferenceTypes = true);
 
 
 var tokenOptions = configuration.GetSection("TokenOptions").Get<TokenOptions>();
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
 {
+
     options.TokenValidationParameters = new TokenValidationParameters
     {
+        ValidIssuer = builder.Configuration["Jwt:Issuer"],
+        ValidAudience = builder.Configuration["Jwt:Audience"],
+        IssuerSigningKey = new SymmetricSecurityKey
+            (Encoding.UTF8.GetBytes(builder.Configuration["Jwt:Key"])),
         ValidateIssuer = true,
         ValidateAudience = true,
-        ValidateLifetime = false,
-        ValidIssuer = tokenOptions.Issuer,
-        ValidAudience = tokenOptions.Audience,
-        ValidateIssuerSigningKey = true,
-        IssuerSigningKey = SecurityKeyHelper.CreateSecurityKey(tokenOptions.SecurityKey),
+        ValidateLifetime = true,
+        ValidateIssuerSigningKey = true
     };
 });
 
@@ -45,6 +49,20 @@ builder.Services.AddDependencyResolvers(new ICoreModule[] {
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy(name: "AllowAllDev",
+    policy =>
+           {
+               policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader();
+           });
+    options.AddPolicy(name: "dene", policy =>
+    {
+        policy.WithOrigins("https://anttaxi.mobilulasim.com").AllowAnyMethod().AllowAnyHeader();
+    });
+});
+
+
 
 var app = builder.Build();
 
@@ -58,6 +76,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
+app.UseCors("AllowAllDev");
 
 app.MapControllers();
 

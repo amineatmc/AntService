@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
 namespace UserWebAPI.Controllers
@@ -47,5 +48,17 @@ namespace UserWebAPI.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPut("[action]")]
+        public IActionResult Update(VehicleUpdateDto vehicleUpdateDto)
+        {
+            var result = _vehicleService.Update(vehicleUpdateDto);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
     }
 }

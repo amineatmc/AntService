@@ -9,7 +9,7 @@ namespace AntalyaTaksiAccount.Models
        // public Driver Driver { get; set; }
         public int VehicleID { get; set; }
        // public Vehicle Vehicle { get; set; }
-        public int Activity { get; set; }
+        public bool IsDeleted{ get; set; }
         public DateTime CreatedDate { get; set; }
     }
 }

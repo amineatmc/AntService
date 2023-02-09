@@ -25,5 +25,6 @@ namespace Entities.Concrete
         public string FinishLong { get; set; }
         public DateTime CreatedDate { get; set; }
         public bool IsActive{ get; set; }
+        public bool IsDeleted { get; set; }
     }
 }
