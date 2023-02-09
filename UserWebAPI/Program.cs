@@ -58,7 +58,7 @@ builder.Services.AddCors(options =>
            });
     options.AddPolicy(name: "dene", policy =>
     {
-        policy.WithOrigins("https://anttaxi.mobilulasim.com").AllowAnyMethod().AllowAnyHeader();
+        policy.WithOrigins("https://anttaxi.mobilulasim.com").AllowAnyMethod().AllowAnyHeader().AllowCredentials();
     });
 });
 
@@ -76,7 +76,7 @@ if (app.Environment.IsDevelopment())
 app.UseHttpsRedirection();
 
 app.UseAuthorization();
-app.UseCors("AllowAllDev");
+app.UseCors("dene");
 
 app.MapControllers();
 
