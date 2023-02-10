@@ -73,7 +73,9 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<VoipManager>().As<IVoipService>();
             builder.RegisterType<EfVoipDal>().As<IVoipDal>();
 
-           
+            builder.RegisterType<VehicleOwnerVehicleManager>().As<IVehicleOwnerVehicleService>();
+            builder.RegisterType<EfVehicleOwnerVehicleDal>().As<IVehicleOwnerVehicleDal>();
+
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
