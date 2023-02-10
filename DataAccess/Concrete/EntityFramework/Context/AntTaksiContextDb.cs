@@ -42,6 +42,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<StationVehicle> StationVehicles { get; set; }
         public DbSet<Voip> Voips { get; set; }
         public DbSet<UserALL> UserALL { get; set; }
+        public DbSet<VehicleOwnerVehicle> VehicleOwnerVehicles{ get; set; }
 
     }
 }
