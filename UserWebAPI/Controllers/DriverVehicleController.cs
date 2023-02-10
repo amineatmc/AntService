@@ -20,6 +20,8 @@ namespace UserWebAPI.Controllers
         [HttpPost("[action]")]
         public IActionResult AddReq(DriverVehicle entity)
         {
+            entity.CreatedDate = DateTime.Now;
+            entity.IsDeleted = false;
             var history = _driverVehicleService.Add(entity);
             if (!history.Result.Success)
             {
@@ -27,7 +29,6 @@ namespace UserWebAPI.Controllers
             }
             return Ok(entity);
         }
-
 
         [HttpGet("[action]")]
         public IActionResult GetAll()

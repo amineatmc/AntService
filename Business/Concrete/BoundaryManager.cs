@@ -11,6 +11,7 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using Microsoft.Net.Http.Headers;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -29,7 +30,6 @@ namespace Business.Concrete
         IBoundaryDal _boundrayDal;
         IHttpContextAccessor _contextAccessor;
 
-
         public BoundaryManager(IBoundaryDal boundaryDal, IHttpContextAccessor contextAccessor)
         {
             _boundrayDal = boundaryDal;
@@ -43,7 +43,8 @@ namespace Business.Concrete
             _boundrayDal.Add(boundary);
             try
             {
-                var login = (HttpWebRequest)WebRequest.Create("https://04d0-89-43-78-197.eu.ngrok.io/admins/generatetoken");
+
+                var login = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/admins/generatetoken");
                 login.PreAuthenticate = true;
                 login.ContentType = "application/json";
                 login.Method = "POST";
@@ -65,14 +66,14 @@ namespace Business.Concrete
                 }
 
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://04d0-89-43-78-197.eu.ngrok.io/boundaries");
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/boundaries");
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "POST";
                 entityPost.Headers.Add("Authorization", "Bearer " + jwtToken);
                 using (var stream = new StreamWriter(entityPost.GetRequestStream()))
                 {
-                    string json = "{\"stationId\":\"" + Convert.ToInt32(boundary.StationID) + "\"," +                              
+                    string json = "{\"stationId\":\"" + Convert.ToInt32(boundary.StationID) + "\"," +
                                    "\"boundaryId\":\"" + Convert.ToInt32(boundary.BoundaryID) + "\"," +
                                    "\"latitude\":\"" + boundary.Lat + "\"," +
                                    "\"longitude\":\"" + boundary.Long +
@@ -91,7 +92,7 @@ namespace Business.Concrete
                 }
                 catch (WebException ex)
                 {
-                    var ms=ex.Message;
+                    var ms = ex.Message;
                 }
             }
             catch (Exception)
@@ -103,8 +104,8 @@ namespace Business.Concrete
 
         public IResult Delete(int id)
         {
-            var entity = _boundrayDal.Get(x=>x.BoundaryID== id && x.IsDeleted==false);
-            if (entity==null)
+            var entity = _boundrayDal.Get(x => x.BoundaryID == id && x.IsDeleted == false);
+            if (entity == null)
             {
                 return new ErrorResult("kayıt yok");
             }
@@ -114,7 +115,7 @@ namespace Business.Concrete
             try
             {
                 string jwtToken;
-                var login = (HttpWebRequest)WebRequest.Create("https://04d0-89-43-78-197.eu.ngrok.io/admins/generatetoken");
+                var login = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/admins/generatetoken");
                 login.PreAuthenticate = true;
                 login.ContentType = "application/json";
                 login.Method = "POST";
@@ -136,27 +137,27 @@ namespace Business.Concrete
                 }
 
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://04d0-89-43-78-197.eu.ngrok.io/boundaries/"+entity.BoundaryID);
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/boundaries/" + entity.BoundaryID);
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "DELETE";
                 entityPost.Headers.Add("Authorization", "Bearer " + jwtToken);
                 using (var stream = new StreamWriter(entityPost.GetRequestStream()))
-                
-             
-                try
-                {
-                    var httpResponse = (HttpWebResponse)entityPost.GetResponse();
-                    using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+
+
+                    try
                     {
-                        var resultJson = streamReader.ReadToEnd();
-                        JObject result = JObject.Parse(resultJson);
+                        var httpResponse = (HttpWebResponse)entityPost.GetResponse();
+                        using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                        {
+                            var resultJson = streamReader.ReadToEnd();
+                            JObject result = JObject.Parse(resultJson);
+                        }
                     }
-                }
-                catch (WebException ex)
-                {
-                    var ms = ex.Message;
-                }
+                    catch (WebException ex)
+                    {
+                        var ms = ex.Message;
+                    }
             }
             catch (Exception)
             {
@@ -170,12 +171,12 @@ namespace Business.Concrete
         // [SecuredOperation("1")]
         public IDataResult<List<Boundary>> GetAll()
         {
-            return new SuccessDataResult<List<Boundary>>(_boundrayDal.GetList().Where(x=>x.IsDeleted==false).ToList());
+            return new SuccessDataResult<List<Boundary>>(_boundrayDal.GetList().Where(x => x.IsDeleted == false).ToList());
         }
 
         public IDataResult<List<Boundary>> GetByStationId(int id)
         {
-            var result = _boundrayDal.GetList(x => x.StationID == id && x.IsDeleted==false);
+            var result = _boundrayDal.GetList(x => x.StationID == id && x.IsDeleted == false);
             if (result != null)
             {
                 return new SuccessDataResult<List<Boundary>>(result);
@@ -186,14 +187,14 @@ namespace Business.Concrete
         public IDataResult<Boundary> Update(BoundaryUpdateDto boundary)
         {
             string jwtToken;
-            var entity = _boundrayDal.Get(x => x.BoundaryID == boundary.BoundaryID && x.IsDeleted==false);
+            var entity = _boundrayDal.Get(x => x.BoundaryID == boundary.BoundaryID && x.IsDeleted == false);
             entity.Lat = boundary.Lat;
             entity.Long = boundary.Long;
             _boundrayDal.Update(entity);
 
             try
             {
-                var login = (HttpWebRequest)WebRequest.Create("https://04d0-89-43-78-197.eu.ngrok.io/admins/generatetoken");
+                var login = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/admins/generatetoken");
                 login.PreAuthenticate = true;
                 login.ContentType = "application/json";
                 login.Method = "POST";
@@ -214,7 +215,7 @@ namespace Business.Concrete
                     jwtToken = resultS["token"].ToString();
                 }
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://04d0-89-43-78-197.eu.ngrok.io/boundaries/"+boundary.BoundaryID);
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/boundaries/" + boundary.BoundaryID);
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "PATCH";
@@ -249,6 +250,6 @@ namespace Business.Concrete
             return new SuccessDataResult<Boundary>(entity);
         }
 
-      
+
     }
 }
