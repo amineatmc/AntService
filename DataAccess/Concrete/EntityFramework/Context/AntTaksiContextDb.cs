@@ -15,7 +15,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             //optionsBuilder.UseSqlServer(@"Server=192.168.101.3; Database=patronDB; User Id=sa; Password=300881_?;");
-            optionsBuilder.UseSqlServer(@"Server=192.168.2.62;Database=ATAccountDB;User Id=sa;Password=Bilge03!;TrustServerCertificate=True");
+            optionsBuilder.UseSqlServer(@"Server=tcp:taxi7x24-mssql-prod.database.windows.net,1433;Initial Catalog=antalyataksidb;Persist Security Info=False;User ID=ipos;Password=XGh:r2!7ZUv*BU:r;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
            // optionsBuilder.UseSqlServer(@"Server = tcp:antalyadeneme.database.windows.net, 1433; Initial Catalog = antalyatest; Persist Security Info = False; User ID = admin_antalya; Password =Bilge03!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
