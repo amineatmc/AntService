@@ -60,5 +60,16 @@ namespace UserWebAPI.Controllers
             return BadRequest();
         }
 
+        [HttpDelete("[action]")]
+        public IActionResult Delete(int id)
+        {
+            var result = _vehicleService.Delete(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
     }
 }

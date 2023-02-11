@@ -23,6 +23,7 @@ namespace Business.Concrete
         public async Task<IResult> Add(StationVehicle entity)
         {
             entity.CreatedDate= DateTime.Now;
+            entity.Activity = true;
             _stationVehicleDal.Add(entity);
             return new SuccessResult();
         }    
@@ -40,6 +41,12 @@ namespace Business.Concrete
         public IDataResult<List<StVehicleListDto>> GetByStationId(int id)
         {
             return new SuccessDataResult<List<StVehicleListDto>>(_stationVehicleDal.GetStVehicleList().Where(x => x.StationId == id).ToList());  
+        }
+
+        public IDataResult<List<StVehicleListDto>> GetByVehicleId(int id)
+        {
+            return new SuccessDataResult<List<StVehicleListDto>>(_stationVehicleDal.GetStVehicleList().Where(x => x.VehicleId == id).ToList());
+
         }
     }
 }
