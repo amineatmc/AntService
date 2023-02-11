@@ -15,5 +15,6 @@ namespace Business.Abstract
         Task<IResult> Add(StationVehicle entity);
         IDataResult<List<StationVehicle>> GetAll();
         IDataResult<List<StVehicleListDto>> GetByStationId(int id);    
+        IDataResult<List<StVehicleListDto>> GetByVehicleId(int id);    
     }
 }

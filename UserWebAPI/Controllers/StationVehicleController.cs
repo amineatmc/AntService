@@ -60,5 +60,16 @@ namespace UserWebAPI.Controllers
             return BadRequest();
         }
 
+        [HttpGet("[action]")]
+        public IActionResult GetByVehicleId(int id)
+        {
+            var result = _stationVehicleService.GetByVehicleId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
     }
 }
