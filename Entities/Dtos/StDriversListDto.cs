@@ -11,6 +11,8 @@ namespace Entities.Dtos
     {
         public int StationVehicleID { get; set; }
         public int StationId { get; set; }
+        public int VehicleId { get; set; }
         public List<Vehicle> Vehicles { get; set; }
+        public List<Station>  Stations{ get; set; }
     }
 }

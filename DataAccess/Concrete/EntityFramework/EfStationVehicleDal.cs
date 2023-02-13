@@ -43,6 +43,8 @@ namespace DataAccess.Concrete.EntityFramework
                              {
                                  StationVehicleID = stationVeh.VehicleId,
                                  StationId = stationVeh.StationId,
+                                 VehicleId = stationVeh.VehicleId,
+                                 Stations= context.Stations.Where(x => x.StationID == stationVeh.StationId).ToList(),
                                  Vehicles = context.Vehicles.Where(x => x.VehicleID == stationVeh.VehicleId).ToList(),
                              };
                 return result.ToList();
