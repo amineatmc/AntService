@@ -23,7 +23,7 @@ namespace Business.Concrete
 
         public async Task<IResult> Add(VehicleOwner entity)
         {
-            var tc = _vehicleOwnerDal.Get(x=>x.TCNo==entity.TCNo);
+            var tc = _vehicleOwnerDal.Get(x=>x.TCNo==entity.TCNo && x.IsDeleted == false);
             if (tc==null) {
                 entity.IsDeleted= false;
                 entity.CreatedDate= DateTime.Now;
@@ -64,7 +64,6 @@ namespace Business.Concrete
         public IDataResult<VehicleOwner> GetbyTc(string tc)
         {
             return new SuccessDataResult<VehicleOwner>(_vehicleOwnerDal.Get(x => x.TCNo == tc && x.IsDeleted == false));
-
         }
 
         public IResult Update(VehicleOwnerUpdateDto entity)
