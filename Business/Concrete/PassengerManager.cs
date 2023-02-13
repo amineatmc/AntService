@@ -21,7 +21,7 @@ namespace Business.Concrete
 
         public IDataResult<List<PassengerListDto>> GetById(int id)
         {
-           return new SuccessDataResult<List<PassengerListDto>>(_passengerDal.GetPassengers().Where(x=>x.PassengerID==id).ToList());
+           return new SuccessDataResult<List<PassengerListDto>>(_passengerDal.GetPassengers().Where(x=>x.PassengerID==id && x.Activity==1).ToList());
         }
     }
 }

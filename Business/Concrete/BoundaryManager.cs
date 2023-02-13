@@ -39,6 +39,7 @@ namespace Business.Concrete
         public IResult Add(Boundary boundary)
         {
             string jwtToken;
+            boundary.IsDeleted=false;
             boundary.CreatedDate = DateTime.Now;
             _boundrayDal.Add(boundary);
             try
