@@ -7,6 +7,7 @@ using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -27,17 +28,17 @@ namespace Business.Concrete
 
         public IDataResult<List<DriverListDto>> GetAlls()
         {
-            return new SuccessDataResult<List<DriverListDto>>(_driverDal.GetDrivers());
+            return new SuccessDataResult<List<DriverListDto>>(_driverDal.GetDrivers().Where(x=>x.Activity==1).ToList());
         }
 
         public IDataResult<List<DriverListDto>> GetById(int id)
         {
-            return new SuccessDataResult<List<DriverListDto>>(_driverDal.GetDrivers().Where(x=>x.DriverID==id).ToList());
+            return new SuccessDataResult<List<DriverListDto>>(_driverDal.GetDrivers().Where(x=>x.DriverID == id && x.Activity == 1).ToList());
         }
 
         public IDataResult<List<DriverListDto>> GetByTc(string tc)
         {
-            return new SuccessDataResult<List<DriverListDto>>(_driverDal.GetDrivers().Where(x=>x.IdNo==tc).ToList());
+            return new SuccessDataResult<List<DriverListDto>>(_driverDal.GetDrivers().Where(x=>x.IdNo==tc && x.Activity==1).ToList());
         }
 
         public IDataResult<List<DriverUpdateDto>> Update(DriverUpdateDto driver)

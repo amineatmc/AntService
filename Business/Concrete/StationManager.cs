@@ -27,7 +27,7 @@ namespace Business.Concrete
 
         public IDataResult<List<StationListDto>> GetByStationId(int id)
         {
-            return new SuccessDataResult<List<StationListDto>>(_stationDal.GetStationList().Where(x=>x.StationID==id).ToList());
+            return new SuccessDataResult<List<StationListDto>>(_stationDal.GetStationList().Where(x=>x.StationID==id && x.Activity==1).ToList());
 
         }
     }
