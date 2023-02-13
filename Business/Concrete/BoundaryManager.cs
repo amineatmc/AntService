@@ -44,7 +44,7 @@ namespace Business.Concrete
             try
             {
 
-                var login = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/admins/generatetoken");
+                var login = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken");
                 login.PreAuthenticate = true;
                 login.ContentType = "application/json";
                 login.Method = "POST";
@@ -66,7 +66,7 @@ namespace Business.Concrete
                 }
 
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/boundaries");
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/boundaries");
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "POST";
@@ -115,7 +115,7 @@ namespace Business.Concrete
             try
             {
                 string jwtToken;
-                var login = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/admins/generatetoken");
+                var login = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken");
                 login.PreAuthenticate = true;
                 login.ContentType = "application/json";
                 login.Method = "POST";
@@ -137,7 +137,7 @@ namespace Business.Concrete
                 }
 
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/boundaries/" + entity.BoundaryID);
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken" + entity.BoundaryID);
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "DELETE";
@@ -194,7 +194,7 @@ namespace Business.Concrete
 
             try
             {
-                var login = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/admins/generatetoken");
+                var login = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken");
                 login.PreAuthenticate = true;
                 login.ContentType = "application/json";
                 login.Method = "POST";
@@ -215,7 +215,7 @@ namespace Business.Concrete
                     jwtToken = resultS["token"].ToString();
                 }
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://1a62-89-43-78-197.eu.ngrok.io/boundaries/" + boundary.BoundaryID);
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken" + boundary.BoundaryID);
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "PATCH";
