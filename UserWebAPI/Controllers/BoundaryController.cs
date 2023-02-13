@@ -27,22 +27,22 @@ namespace UserWebAPI.Controllers
         [HttpGet("[action]")]
         public IActionResult GetAll() 
         {
-            var token = _contextAccessor.HttpContext.Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
+            //var token = _contextAccessor.HttpContext.Request.Headers[HeaderNames.Authorization].ToString().Replace("Bearer ", "");
 
-            var handler = new JwtSecurityTokenHandler();
-            var jwtSecurityToken = handler.ReadJwtToken(token);
-            var userType = jwtSecurityToken.Claims.ToList()[3].Value;
+            //var handler = new JwtSecurityTokenHandler();
+            //var jwtSecurityToken = handler.ReadJwtToken(token);
+            //var userType = jwtSecurityToken.Claims.ToList()[3].Value;
             
-            if (userType == "2")
-            {
+            //if (userType == "2")
+            //{
                 var result = _boundaryService.GetAll();
                 if (result.Success)
                 {
                     return Ok(result);
                 }
                 return BadRequest();
-            }
-            return BadRequest("yetki yok");
+            //}
+            //return BadRequest("yetki yok");
         }
 
         [HttpGet("[action]")]

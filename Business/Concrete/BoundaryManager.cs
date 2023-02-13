@@ -137,7 +137,7 @@ namespace Business.Concrete
                 }
 
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken" + entity.BoundaryID);
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/boundaries/" + entity.BoundaryID);
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "DELETE";
@@ -215,7 +215,7 @@ namespace Business.Concrete
                     jwtToken = resultS["token"].ToString();
                 }
 
-                var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken" + boundary.BoundaryID);
+                var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/boundaries/" + boundary.BoundaryID);
                 entityPost.PreAuthenticate = true;
                 entityPost.ContentType = "application/json";
                 entityPost.Method = "PATCH";
