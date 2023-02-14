@@ -22,7 +22,7 @@ namespace Business.Concrete
 
         public IDataResult<List<StationListDto>> GetAll()
         {
-           return new SuccessDataResult<List<StationListDto>>(_stationDal.GetStationList().ToList());
+           return new SuccessDataResult<List<StationListDto>>(_stationDal.GetStationList().Where(x=>x.Activity==1).ToList());
         }
 
         public IDataResult<List<StationListDto>> GetByStationId(int id)
