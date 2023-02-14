@@ -1,5 +1,6 @@
 ﻿using AntalyaTaksiAccount.Models;
 using Business.Abstract;
+using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
@@ -39,18 +40,7 @@ namespace UserWebAPI.Controllers
             }
             return BadRequest();
         }
-
-
-        //[HttpGet("[action]")]
-        //public IActionResult GetAll()
-        //{
-        //    var result = _driverService.GetAll();
-        //    if (result.Success)
-        //    {
-        //        return Ok(result);
-        //    }
-        //    return BadRequest();
-        //}
+      
 
         [HttpPut("[action]")]
         public IActionResult Update(DriverUpdateDto driverUpdateDto)
@@ -67,6 +57,18 @@ namespace UserWebAPI.Controllers
         public IActionResult GetDrivers()
         {
             var result = _driverService.GetAlls();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+
+        [HttpPost("[action]")]
+        public IActionResult Add(Driver driver)
+        {
+            var result = _driverService.Add(driver);
             if (result.Success)
             {
                 return Ok(result);

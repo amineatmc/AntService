@@ -98,7 +98,7 @@ namespace Business.Concrete
             }
             catch (Exception)
             {
-                return new SuccessResult();
+                return new ErrorResult();
             }
             return new SuccessResult();
         }

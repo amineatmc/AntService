@@ -3,10 +3,13 @@ using Business.Abstract;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
+using Entities.Concrete;
 using Entities.Dtos;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,7 +22,65 @@ namespace Business.Concrete
         public DriverManager(IDriverDal driverDal)
         {
             _driverDal= driverDal;
-        }   
+        }
+
+        public IResult Add(Driver driver)
+        {
+           //_driverDal.Add(driver);
+
+            string jwtToken;
+            var login = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/admins/generatetoken");
+            login.PreAuthenticate = true;
+            login.ContentType = "application/json";
+            login.Method = "POST";
+            using (var streamWriterS = new StreamWriter(login.GetRequestStream()))
+            {
+                string jsonS = "{\"username\":\"" + "admin" + "\"," +
+                               "\"password\":\"" + "170718Se." +
+                               "\"}";
+                streamWriterS.Write(jsonS);
+            }
+            string Json;
+
+            var httpResponses = (HttpWebResponse)login.GetResponse();
+            using (var streamReaderS = new StreamReader(httpResponses.GetResponseStream()))
+            {
+                Json = streamReaderS.ReadToEnd();
+                JObject resultS = JObject.Parse(Json);
+                jwtToken = resultS["token"].ToString();
+            }
+
+
+            var entityPost = (HttpWebRequest)WebRequest.Create("https://antalyataksinode.azurewebsites.net/drivers");
+            entityPost.PreAuthenticate = true;
+            entityPost.ContentType = "application/json";
+            entityPost.Method = "POST";
+            entityPost.Headers.Add("Authorization", "Bearer " + jwtToken);
+            using (var stream = new StreamWriter(entityPost.GetRequestStream()))
+            {
+                string json = "{\"driverId\":\"" + 1 + "\"," +
+                               "\"stationId\":\"" + 1 + "\"," +
+                               "\"allUserId\":\"" + 1 + 
+                               "\"}";
+                stream.Write(json);
+            }
+            string resultJson;
+            try
+            {
+                var httpResponse = (HttpWebResponse)entityPost.GetResponse();
+                using (var streamReader = new StreamReader(httpResponse.GetResponseStream()))
+                {
+                    resultJson = streamReader.ReadToEnd();
+                    JObject result = JObject.Parse(resultJson);
+                }
+            }
+            catch (WebException ex)
+            {
+                var ms = ex.Message;
+            }
+            return new SuccessResult();
+
+        }
 
         //public IDataResult<List<Driver>> GetAll()
         //{

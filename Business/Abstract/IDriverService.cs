@@ -18,6 +18,6 @@ namespace Business.Abstract
         IDataResult<List<DriverListDto>> GetById(int id);
         IDataResult<List<DriverUpdateDto>> Update(DriverUpdateDto driver);
         IDataResult<List<DriverListDto>> GetAlls();
-
+        IResult Add(Driver driver);
     }
 }
