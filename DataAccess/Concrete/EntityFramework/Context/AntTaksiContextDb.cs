@@ -1,11 +1,9 @@
-﻿using AntalyaTaksiAccount.Models;
-using Core.Entities.Concrete;
+﻿using Core.Entities.Concrete;
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
 using System.Data;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 
 namespace DataAccess.Concrete.EntityFramework.Context
 {
@@ -14,10 +12,7 @@ namespace DataAccess.Concrete.EntityFramework.Context
         //192.168.101.3LAPTOP-SN3MKSFL //Trusted_Connection=True;MultipleActiveResultSets=true User Id=sa; Password=300881_?;
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            //optionsBuilder.UseSqlServer(@"Server=192.168.101.3; Database=patronDB; User Id=sa; Password=300881_?;");
-            //optionsBuilder.UseSqlServer(@"Server=tcp:taxi7x24-mssql-prod.database.windows.net,1433;Initial Catalog=antalyataksidb;Persist Security Info=False;User ID=ipos;Password=XGh:r2!7ZUv*BU:r;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
               optionsBuilder.UseSqlServer(@"Server=tcp:taxi7x24-mssql-prod.database.windows.net,1433;Initial Catalog=Taxi7x24_db_Prod;Persist Security Info=False;User ID=ipos;Password=XGh:r2!7ZUv*BU:r;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;");
-           // optionsBuilder.UseSqlServer(@"Server = tcp:antalyadeneme.database.windows.net, 1433; Initial Catalog = antalyatest; Persist Security Info = False; User ID = admin_antalya; Password =Bilge03!; MultipleActiveResultSets = False; Encrypt = True; TrustServerCertificate = False; Connection Timeout = 30;");
         }
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

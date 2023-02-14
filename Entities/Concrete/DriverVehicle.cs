@@ -1,6 +1,6 @@
 ﻿using Entities.Concrete;
 
-namespace AntalyaTaksiAccount.Models
+namespace Entities.Concrete
 {
     public class DriverVehicle
     {
