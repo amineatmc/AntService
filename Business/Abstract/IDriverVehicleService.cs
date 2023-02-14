@@ -1,5 +1,6 @@
 ﻿using AntalyaTaksiAccount.Models;
 using Core.Utilities.Result.Abstract;
+using Entities.Concrete;
 using Entities.Dtos;
 using System;
 using System.Collections.Generic;
