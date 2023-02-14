@@ -80,7 +80,13 @@ builder.Services.AddCors(options =>
     });
 });
 
+Log.Logger = new LoggerConfiguration()
+    .Enrich.FromLogContext()
+    .WriteTo.AzureApp()
+    .CreateLogger();
 
+Host.CreateDefaultBuilder(args)
+    .UseSerilog();
 
 var app = builder.Build();
 
@@ -98,5 +104,4 @@ app.UseCors("dene");
 app.MapControllers();
 app.UseRouting();
 app.MapHealthChecks("/health");
-
 app.Run();
