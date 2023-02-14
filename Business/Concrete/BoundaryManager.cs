@@ -36,7 +36,7 @@ namespace Business.Concrete
             _contextAccessor = contextAccessor;
         }
 
-        public IResult Add(Boundary boundary)
+        public Core.Utilities.Result.Abstract.IResult Add(Boundary boundary)
         {
             string jwtToken;
             boundary.IsDeleted=false;
@@ -103,7 +103,7 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult Delete(int id)
+        public Core.Utilities.Result.Abstract.IResult Delete(int id)
         {
             var entity = _boundrayDal.Get(x => x.BoundaryID == id && x.IsDeleted == false);
             if (entity == null)

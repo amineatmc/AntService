@@ -4,6 +4,7 @@ using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
 
+
 namespace UserWebAPI.Controllers
 {
 
@@ -11,11 +12,12 @@ namespace UserWebAPI.Controllers
     [ApiController]
     public class DriverController :ControllerBase
     {
-
+        private readonly ILogger<DriverController> _logger;
         IDriverService _driverService;
-        public DriverController(IDriverService driverService)
+        public DriverController(IDriverService driverService, ILogger<DriverController> logger)
         {
             _driverService = driverService;
+            _logger = logger;
         }
 
         [HttpGet("[action]")]
@@ -24,7 +26,9 @@ namespace UserWebAPI.Controllers
             var result = _driverService.GetById(id);
             if (result.Success)
             {
+                _logger.LogInformation("");
                 return Ok(result);
+
             }
             return BadRequest();
         }
@@ -64,16 +68,5 @@ namespace UserWebAPI.Controllers
             return BadRequest();
         }
 
-
-        [HttpPost("[action]")]
-        public IActionResult Add(Driver driver)
-        {
-            var result = _driverService.Add(driver);
-            if (result.Success)
-            {
-                return Ok(result);
-            }
-            return BadRequest();
-        }
     }
 }

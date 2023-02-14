@@ -10,14 +10,25 @@ using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using System.Text;
+using Microsoft.Extensions.Diagnostics.HealthChecks;
+using Serilog;
+
+
 
 var builder = WebApplication.CreateBuilder(args);
 
+//Log.Logger = new LoggerConfiguration()
+//            .MinimumLevel.Information()
+//            .WriteTo.AzureApp(opt =>
+//            {
+//                opt.InstrumentationKey = "YOUR_INSTRUMENTATION_KEY";
+//            })
+//            .CreateLogger();
 // Add services to the container.
+
 builder.Host.UseServiceProviderFactory(new AutofacServiceProviderFactory());
 builder.Host.ConfigureContainer<ContainerBuilder>(builder => builder.RegisterModule(new AutofacBusinessModule()));
 IConfiguration configuration = builder.Configuration;
-
 
 
 builder.Services.AddControllers(
@@ -48,6 +59,13 @@ builder.Services.AddDependencyResolvers(new ICoreModule[] {
 
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
+
+builder.Services.AddHealthChecks()
+ .AddCheck("self", () => HealthCheckResult.Healthy());
+
+
+
+
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options =>
 {
@@ -66,7 +84,6 @@ builder.Services.AddCors(options =>
 
 var app = builder.Build();
 
-// Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
@@ -74,10 +91,12 @@ if (app.Environment.IsDevelopment())
 }
 
 app.UseHttpsRedirection();
-
 app.UseAuthorization();
+
 app.UseCors("dene");
 
 app.MapControllers();
+app.UseRouting();
+app.MapHealthChecks("/health");
 
 app.Run();
