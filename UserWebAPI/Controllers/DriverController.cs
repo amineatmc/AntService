@@ -26,9 +26,8 @@ namespace UserWebAPI.Controllers
             var result = _driverService.GetById(id);
             if (result.Success)
             {
-                _logger.LogInformation("");
+                _logger.LogInformation("test");
                 return Ok(result);
-
             }
             return BadRequest();
         }
