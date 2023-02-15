@@ -1,5 +1,4 @@
-﻿using AntalyaTaksiAccount.Models;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;

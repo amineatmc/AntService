@@ -1,5 +1,4 @@
-﻿using Core.Entities.Concrete;
-using Entities.Concrete;
+﻿using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNet.Identity;
 using Microsoft.EntityFrameworkCore;
