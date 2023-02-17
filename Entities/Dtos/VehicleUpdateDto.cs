@@ -16,6 +16,8 @@ namespace Entities.Dtos
         public string LicenseNo { get; set; }
         public string LicenseDate { get; set; }
         public string LicenseExpiryDate { get; set; }
-       
+        public string TaximeterType { get; set; }
+
+
     }
 }

@@ -63,6 +63,7 @@ namespace Business.Concrete
                 result.LicenseNo= vehicleUpdateDto.LicenseNo;
                 result.LicenseDate= vehicleUpdateDto.LicenseDate;
                 result.LicenseExpiryDate= vehicleUpdateDto.LicenseExpiryDate;
+                result.TaximeterType= vehicleUpdateDto.TaximeterType;
                 _vehicleDal.Update(result);
                 return new SuccessDataResult<VehicleUpdateDto>(vehicleUpdateDto);
             }
