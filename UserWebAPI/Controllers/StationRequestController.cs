@@ -48,5 +48,16 @@ namespace UserWebAPI.Controllers
             }
             return Ok(data);
         }
+
+        [HttpPost("[action]")]
+        public IActionResult GetStationIdFilterDate(DateTimeFilterDto entity)
+        {
+            var data = _stationRequestService.GetbyStationIdFilterDate(entity);
+            if (!data.Success)
+            {
+                return BadRequest();
+            }
+            return Ok(data);
+        }
     }
 }

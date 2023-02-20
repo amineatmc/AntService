@@ -13,6 +13,7 @@ namespace Business.Abstract
     {
         Task<IResult> Add(StationRequest entity);
         IDataResult<StationRequest> GetbyId(int id);
+        IDataResult<List<StationRequest>> GetbyStationIdFilterDate(DateTimeFilterDto entity);
         IDataResult<StationRequest> Update(StationRequestUpdateDto entity);
 
     }
