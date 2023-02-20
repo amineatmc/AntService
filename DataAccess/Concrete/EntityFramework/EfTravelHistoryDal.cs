@@ -26,6 +26,7 @@ namespace DataAccess.Concrete.EntityFramework
                                  TravelHistoryID = travel.TravelHistoryID,
                                  Passengers = context.Passengers.Where(x => x.PassengerID == travel.PassengerId).ToList(),
                                  Drivers = context.Drivers.Where(x => x.DriverID == travel.DriverId).ToList(),
+                                 DriverId= driver.DriverID,
                                  StationId = travel.StationId,
                                  RequestId= travel.RequestId,
                                  PaymentTypeId= travel.PaymentTypeId,
