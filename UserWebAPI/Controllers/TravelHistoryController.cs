@@ -169,5 +169,27 @@ namespace UserWebAPI.Controllers
             }
             return BadRequest();
         }
+
+        [HttpGet("[action]")]
+        public IActionResult GetAll()
+        {
+            var result = _travelHistoryService.GetAll();
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult GetByStationId(int id)
+        {
+            var result = _travelHistoryService.GetByStationId(id);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
     }
 }
