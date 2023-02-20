@@ -14,6 +14,8 @@ namespace Business.Abstract
         Task<IResult> Add(DriverRequest entity);
         IDataResult<DriverRequest> GetbyId(int id);
         IDataResult<List<DriverRequest>> GetbyRequestId(string id);
+        IDataResult<List<DriverRequest>> GetbyDriverId(int id);
         IDataResult<DriverRequest> Update(DriverRequestUpdateDto entity);
+
     }
 }

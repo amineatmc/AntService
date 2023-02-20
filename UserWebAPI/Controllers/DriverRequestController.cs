@@ -50,7 +50,6 @@ namespace UserWebAPI.Controllers
             return Ok(history);
         }
 
-
         [HttpPut("[action]")]
         public IActionResult Update(DriverRequestUpdateDto entity)
         {
@@ -60,6 +59,17 @@ namespace UserWebAPI.Controllers
                 return BadRequest();
             }
             return Ok(data);
+        }
+
+        [HttpGet("[action]")]
+        public IActionResult GetDriverId(int id)
+        {
+            var history = _driverRequestService.GetbyDriverId(id);
+            if (!history.Success)
+            {
+                return BadRequest();
+            }
+            return Ok(history);
         }
     }
 }

@@ -31,6 +31,12 @@ namespace Business.Concrete
            return new ErrorResult();
         }
 
+        public IDataResult<List<DriverRequest>> GetbyDriverId(int id)
+        {
+            var result= _driverRequest.GetList().Where(x=>x.DriverID==id).ToList();
+            return new SuccessDataResult<List<DriverRequest>>(result);
+        }
+
         public IDataResult<DriverRequest> GetbyId(int id)
         {
             var result = _driverRequest.Get(x => x.DriverRequestID == id);
