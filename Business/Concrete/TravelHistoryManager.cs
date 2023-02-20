@@ -40,6 +40,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().ToList());
         }
 
+        public IDataResult<List<TravelHistoryListDto>> GetByStationIdDateTime(DateTimeFilterDto entity)
+        {
+            return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().Where(x=>x.StationId==entity.Id && x.StartTime>=entity.StartTime && x.StartTime<=entity.FinishTime).ToList());
+        }
+
         public IDataResult<List<TravelHistory>> GetByDriverId(int id)
         {
             return new SuccessDataResult<List<TravelHistory>>(_travelHistoryDal.GetList().Where(x => x.DriverId == id).ToList());
@@ -77,6 +82,12 @@ namespace Business.Concrete
             data.Redirect=entity.Redirect;
             _travelHistoryDal.Update(data);
             return new SuccessDataResult<TravelHistory>(data);
+
+        }
+
+        public IDataResult<List<TravelHistoryListDto>> GetByDriverIdDateTime(DateTimeFilterDto entity)
+        {
+            return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().Where(x => x.DriverId == entity.Id && x.StartTime >= entity.StartTime && x.StartTime <= entity.FinishTime).ToList());
 
         }
     }

@@ -13,6 +13,7 @@ namespace Entities.Dtos
     {
         public int TravelHistoryID { get; set; }
         public int StationId { get; set; }
+        public int DriverId { get; set; }
         public string RequestId { get; set; }
         public int PaymentTypeId { get; set; }
         public decimal Price { get; set; }

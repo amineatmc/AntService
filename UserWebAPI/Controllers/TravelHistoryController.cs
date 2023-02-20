@@ -191,5 +191,27 @@ namespace UserWebAPI.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPost("[action]")]
+        public IActionResult StationFilterDate(DateTimeFilterDto entity)
+        {
+            var result = _travelHistoryService.GetByStationIdDateTime(entity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
+
+        [HttpPost("[action]")]
+        public IActionResult DriverFilterDate(DateTimeFilterDto entity)
+        {
+            var result = _travelHistoryService.GetByDriverIdDateTime(entity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
     }
 }
