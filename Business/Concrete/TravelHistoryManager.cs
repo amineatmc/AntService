@@ -35,6 +35,11 @@ namespace Business.Concrete
             return new SuccessDataResult<List<TravelHistory>>(_travelHistoryDal.GetList().Where(x => x.DriverId == id).ToList());
         }
 
+        public IDataResult<List<TravelHistoryListDto>> GetAll()
+        {
+            return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().ToList());
+        }
+
         public IDataResult<List<TravelHistory>> GetByDriverId(int id)
         {
             return new SuccessDataResult<List<TravelHistory>>(_travelHistoryDal.GetList().Where(x => x.DriverId == id).ToList());
@@ -53,6 +58,11 @@ namespace Business.Concrete
         public IDataResult<List<TravelHistoryListDto>> GetByRequestId(string id)
         {
             return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().Where(x=>x.RequestId==id).ToList());
+        }
+
+        public IDataResult<List<TravelHistoryListDto>> GetByStationId(int id)
+        {
+            return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().Where(x=>x.StationId==id).ToList());
         }
 
         public IDataResult<List<TravelHistory>> PassengerTravel(int id)
