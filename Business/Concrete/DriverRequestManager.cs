@@ -2,6 +2,7 @@
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete.EntityFramework;
 using Entities.Concrete;
 using Entities.Dtos;
 using System;
@@ -35,6 +36,11 @@ namespace Business.Concrete
         {
             var result= _driverRequest.GetList().Where(x=>x.DriverID==id).ToList();
             return new SuccessDataResult<List<DriverRequest>>(result);
+        }
+
+        public IDataResult<List<DriverRequest>> GetbyDriverIdDate(DateTimeFilterDto entity)
+        {
+            return new SuccessDataResult<List<DriverRequest>>(_driverRequest.GetList().Where(x => x.DriverID == entity.Id && x.CreatedDate >= entity.StartTime && x.CreatedDate <= entity.FinishTime).ToList());
         }
 
         public IDataResult<DriverRequest> GetbyId(int id)

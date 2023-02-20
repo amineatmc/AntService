@@ -71,5 +71,17 @@ namespace UserWebAPI.Controllers
             }
             return Ok(history);
         }
+
+
+        [HttpPost("[action]")]
+        public IActionResult GetDriverIdFilterDate(DateTimeFilterDto entity)
+        {
+            var history = _driverRequestService.GetbyDriverIdDate(entity);
+            if (!history.Success)
+            {
+                return BadRequest();
+            }
+            return Ok(history);
+        }
     }
 }

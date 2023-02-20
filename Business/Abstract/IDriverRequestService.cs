@@ -15,6 +15,7 @@ namespace Business.Abstract
         IDataResult<DriverRequest> GetbyId(int id);
         IDataResult<List<DriverRequest>> GetbyRequestId(string id);
         IDataResult<List<DriverRequest>> GetbyDriverId(int id);
+        IDataResult<List<DriverRequest>> GetbyDriverIdDate(DateTimeFilterDto entity);
         IDataResult<DriverRequest> Update(DriverRequestUpdateDto entity);
 
     }

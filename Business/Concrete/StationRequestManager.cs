@@ -37,6 +37,11 @@ namespace Business.Concrete
             return new SuccessDataResult<StationRequest>(result);
         }
 
+        public IDataResult<List<StationRequest>> GetbyStationIdFilterDate(DateTimeFilterDto entity)
+        {
+            return new SuccessDataResult<List<StationRequest>>(_stationRequestDal.GetList().Where(x => x.StationId == entity.Id && x.CreatedDate >= entity.StartTime && x.CreatedDate <= entity.FinishTime).ToList());
+        }
+
         public IDataResult<StationRequest> Update(StationRequestUpdateDto entity)
         {
             var data = _stationRequestDal.Get(x=>x.RequestId== entity.RequestId);
