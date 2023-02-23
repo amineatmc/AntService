@@ -43,6 +43,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Reservation>> GetByDriverId(int id)
         {
+            
             return new SuccessDataResult<List<Reservation>>(_reservationDal.GetList().Where(x => x.DriverID == id && x.IsDeleted==false).ToList());
         }
 

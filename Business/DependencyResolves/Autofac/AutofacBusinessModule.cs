@@ -77,6 +77,9 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<EfVehicleOwnerVehicleDal>().As<IVehicleOwnerVehicleDal>();
 
 
+            builder.RegisterType<ScoreManager>().As<IScoreService>();
+            builder.RegisterType<EfScoreDal>().As<IScoreDal>();
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()
