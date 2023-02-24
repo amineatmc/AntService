@@ -80,6 +80,16 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<ScoreManager>().As<IScoreService>();
             builder.RegisterType<EfScoreDal>().As<IScoreDal>();
 
+            builder.RegisterType<CancelTextManager>().As<ICancelTextService>();
+            builder.RegisterType<EfCancelTextDal>().As<ICancelTextDal>();
+
+            builder.RegisterType<DriverCancelTravelManager>().As<IDriverCancelTravelService>();
+            builder.RegisterType<EfDriverCancelTravelDal>().As<IDriverCancelTravelDal>();
+
+            builder.RegisterType<PassengerCancelTravelManager>().As<IPassengerCancelTravelService>();
+            builder.RegisterType<EfPassengerCancelTravelDal>().As<IPassengerCancelTravelDal>();
+
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()

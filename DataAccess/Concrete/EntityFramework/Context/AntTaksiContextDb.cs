@@ -39,6 +39,10 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<UserALL> UserALL { get; set; }
         public DbSet<VehicleOwnerVehicle> VehicleOwnerVehicles{ get; set; }
         public DbSet<Score> Scores { get; set; }
+        public DbSet<CancelText> CancelTexts { get; set; }
+        public DbSet<DriverCancelTravel> DriverCancelTravels { get; set;}
+        public DbSet<PassengerCancelTravel> PassengerCancelTravels { get; set;}
+        
 
     }
 }
