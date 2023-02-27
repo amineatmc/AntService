@@ -43,6 +43,6 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<DriverCancelTravel> DriverCancelTravels { get; set;}
         public DbSet<PassengerCancelTravel> PassengerCancelTravels { get; set;}
         
-
+        public DbSet<Recipe> Recipes { get; set; }
     }
 }
