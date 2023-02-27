@@ -213,5 +213,16 @@ namespace UserWebAPI.Controllers
             }
             return BadRequest();
         }
+
+        [HttpPost("[action]")]
+        public IActionResult DriverEarnings(DateTimeFilterDto entity)
+        {
+            var result = _travelHistoryService.DriverEarnings(entity);
+            if (result.Success)
+            {
+                return Ok(result);
+            }
+            return BadRequest();
+        }
     }
 }
