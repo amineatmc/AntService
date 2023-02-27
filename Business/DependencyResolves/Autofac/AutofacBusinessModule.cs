@@ -89,6 +89,8 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<PassengerCancelTravelManager>().As<IPassengerCancelTravelService>();
             builder.RegisterType<EfPassengerCancelTravelDal>().As<IPassengerCancelTravelDal>();
 
+            builder.RegisterType<RecipeManager>().As<IRecipeService>();
+            builder.RegisterType<EfRecipeDal>().As<IRecipeDal>();
 
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
