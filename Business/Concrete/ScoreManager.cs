@@ -30,7 +30,7 @@ namespace Business.Concrete
 
         public IDataResult<Score> GetByDriverId(int id)
         {
-            var scores = new List<Score>();
+           // var scores = new List<Score>();
             var list = _scoreDal.GetList().Where(x => x.DriverId == id).ToList();
             int total = 0;
             for (int i = 0; i < list.Count; i++)

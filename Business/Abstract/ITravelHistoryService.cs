@@ -23,6 +23,7 @@ namespace Business.Abstract
         IDataResult<List<TravelHistoryListDto>> GetByStationIdDateTime(DateTimeFilterDto entity);
         IDataResult<List<TravelHistoryListDto>> GetByDriverIdDateTime(DateTimeFilterDto entity);
         IDataResult<TravelHistory> Update(TravelHistoryUpdateDto entity);
+        IDataResult<EarningsDto> DriverEarnings(DateTimeFilterDto entity);
 
         
 

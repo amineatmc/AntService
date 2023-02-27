@@ -90,5 +90,24 @@ namespace Business.Concrete
             return new SuccessDataResult<List<TravelHistoryListDto>>(_travelHistoryDal.GetTravelHistory().Where(x => x.DriverId == entity.Id && x.StartTime >= entity.StartTime && x.StartTime <= entity.FinishTime).ToList());
 
         }
+
+        public IDataResult<EarningsDto> DriverEarnings(DateTimeFilterDto entity)
+        {
+            decimal total = 0;
+            var travel = _travelHistoryDal.GetList().Where(x => x.DriverId == entity.Id && x.StartTime >= entity.StartTime && x.StartTime <= entity.FinishTime).ToList();
+            for (int i = 0; i < travel.Count; i++)
+            {
+                 total += travel[i].Price;
+            }
+            
+            var list = new EarningsDto();
+            list.DriverId=entity.Id;
+            list.StartDate = entity.StartTime;
+            list.FinishDate = entity.FinishTime;
+            list.Total = total;
+            list.TravelCount = travel.Count;
+
+            return new SuccessDataResult<EarningsDto>(list);
+        }
     }
 }
