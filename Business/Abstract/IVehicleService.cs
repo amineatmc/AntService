@@ -12,6 +12,7 @@ namespace Business.Abstract
     public interface IVehicleService
     {
         Task<IResult> Add(Vehicle entity);
+        IResult AddVehicle(VehicleAddDto entity);
         IDataResult<Vehicle> GetbyId(int id);
         IDataResult<List<Vehicle>> GetAll();
         IDataResult<VehicleUpdateDto> Update(VehicleUpdateDto vehicleUpdateDto);

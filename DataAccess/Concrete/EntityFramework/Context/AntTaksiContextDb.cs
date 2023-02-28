@@ -44,5 +44,6 @@ namespace DataAccess.Concrete.EntityFramework.Context
         public DbSet<PassengerCancelTravel> PassengerCancelTravels { get; set;}
         
         public DbSet<Recipe> Recipes { get; set; }
+        public DbSet<PermitImage> PermitImages{ get; set; }
     }
 }

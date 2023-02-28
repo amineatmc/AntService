@@ -27,6 +27,17 @@ namespace UserWebAPI.Controllers
             return BadRequest();
         }
 
+        [HttpPost("[action]")]
+        public IActionResult AddVehicle([FromForm]VehicleAddDto vehicle)
+        {
+            var result = _vehicleService.AddVehicle(vehicle);
+            if (result.Success)
+            {
+                return Ok(vehicle);
+            }
+            return BadRequest();
+        }
+
         [HttpGet("[action]")]
         public IActionResult GetById(int id)
         {

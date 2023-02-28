@@ -92,6 +92,12 @@ namespace Business.DependencyResolves.Autofac
             builder.RegisterType<RecipeManager>().As<IRecipeService>();
             builder.RegisterType<EfRecipeDal>().As<IRecipeDal>();
 
+            builder.RegisterType<PermitImageManager>().As<IPermitImageService>();
+            builder.RegisterType<EfPermitImageDal>().As<IPermitImageDal>();
+
+            builder.RegisterType<FileManager>().As<IFileService>();
+
+
             var assembly = System.Reflection.Assembly.GetExecutingAssembly();
 
             builder.RegisterAssemblyTypes(assembly).AsImplementedInterfaces().EnableInterfaceInterceptors(new ProxyGenerationOptions()

@@ -41,19 +41,17 @@ namespace Business.Concrete
 
         public IDataResult<List<DriverVehicleListDto>> GetAll()
         {
-            return new SuccessDataResult<List<DriverVehicleListDto>>(_driverVehicleDal.GetDriverVehicles().ToList());
+            return new SuccessDataResult<List<DriverVehicleListDto>>(_driverVehicleDal.GetDriverVehicles().Where(x=>x.IsDeleted==false).ToList());
         }
 
         public IDataResult<List<DriverVehicleListDto>> GetByDriverId(int id)
         {
-            return new SuccessDataResult<List<DriverVehicleListDto>>(_driverVehicleDal.GetDriverVehicles().Where(x=>x.DriverId==id).ToList());
-
+            return new SuccessDataResult<List<DriverVehicleListDto>>(_driverVehicleDal.GetDriverVehicles().Where(x=>x.DriverId==id && x.IsDeleted==false).ToList());
         }
 
         public IDataResult<List<DriverVehicleListDto>> GetByVehicleId(int id)
         {
-            return new SuccessDataResult<List<DriverVehicleListDto>>(_driverVehicleDal.GetDriverVehicles().Where(x => x.VehicleId == id).ToList());
-
+            return new SuccessDataResult<List<DriverVehicleListDto>>(_driverVehicleDal.GetDriverVehicles().Where(x => x.VehicleId == id && x.IsDeleted==false).ToList());
         }
     }
 }
