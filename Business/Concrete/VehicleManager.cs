@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Business.Constans;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
 using DataAccess.Abstract;
@@ -8,6 +9,7 @@ using Entities.Dtos;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ConstrainedExecution;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -16,9 +18,13 @@ namespace Business.Concrete
     public class VehicleManager : IVehicleService
     {
         IVehicleDal _vehicleDal;
-        public VehicleManager(IVehicleDal vehicleDal)
+        IFileService _fileService;
+        IPermitImageService _permitImageService;
+        public VehicleManager(IVehicleDal vehicleDal, IFileService fileService, IPermitImageService permitImageService)
         {
             _vehicleDal = vehicleDal;
+            _fileService = fileService;
+            _permitImageService = permitImageService;
         }
 
         public async Task<IResult> Add(Vehicle entity)
@@ -26,6 +32,49 @@ namespace Business.Concrete
             entity.CreatedDate= DateTime.Now;
             entity.Activity = 1;
            _vehicleDal.Add(entity);
+            return new SuccessResult();
+        }
+
+        public IResult AddVehicle(VehicleAddDto entity)
+        {
+            var data = _vehicleDal.Get(x => x.Plate == entity.Plate);
+            if (data!=null)
+            {
+                return new ErrorResult("Plaka Kaydı Mevcut.");
+            }
+            var vehicle = new Vehicle();
+            vehicle.CreatedDate= DateTime.Now;
+            vehicle.Activity= 1;
+            vehicle.Plate=entity.Plate;
+            vehicle.EngineNo=entity.EngineNo;
+            vehicle.ChasisNo=entity.ChasisNo;
+            vehicle.LicenseDate=entity.LicenseDate;
+            vehicle.LicenseNo=entity.LicenseNo;
+            vehicle.LicenseExpiryDate=entity.LicenseExpiryDate;
+            vehicle.TaximeterType=entity.TaximeterType;
+            vehicle.Ip=entity.Ip;
+            vehicle.Ceza=entity.Ceza;
+            vehicle.CreatedUser=entity.CreatedUser;
+
+            if (entity.CarImages!=null)
+            {
+                _vehicleDal.Add(vehicle);
+                foreach (var item in entity.CarImages)
+                {
+                    string fileName = _fileService.FileSaveToServer(item, "./Content/");
+                    PermitImage permitImageTbl = new()
+                    {
+                        VehicleId = vehicle.VehicleID,
+                        Path = fileName
+                    };
+
+                    _permitImageService.Add(permitImageTbl);
+                }
+            }
+            else
+            {
+                return new ErrorResult(Messages.CarListNull, 404);
+            }
             return new SuccessResult();
         }
 
@@ -50,7 +99,7 @@ namespace Business.Concrete
         {
             var result = _vehicleDal.Get(x => x.VehicleID == id && x.Activity==1);
             return new SuccessDataResult<Vehicle>(result);
-        }
+        }     
 
         public IDataResult<VehicleUpdateDto> Update(VehicleUpdateDto vehicleUpdateDto)
         {

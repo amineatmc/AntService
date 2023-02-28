@@ -9,7 +9,9 @@ using System.Threading.Tasks;
 
 namespace DataAccess.Abstract
 {
-    public interface IVehicleDal : IEntityRepository<Vehicle>
+    public interface IPermitImageDal:IEntityRepository<PermitImage>
     {
+        List<VehiclePermitImageDto> GetVehiclePermitImageList();
+
     }
 }
