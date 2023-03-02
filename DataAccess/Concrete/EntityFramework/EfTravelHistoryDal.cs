@@ -36,6 +36,8 @@ namespace DataAccess.Concrete.EntityFramework
                                  Description= travel.Description,
                                  StartLocation= travel.StartLocation,
                                  FinishLocation = travel.FinishLocation,
+                                 Redirect= travel.Redirect,
+                                 Status= travel.Status,
                                  StartTime= travel.StartTime,
                                  FinishTime= travel.FinishTime
                              };

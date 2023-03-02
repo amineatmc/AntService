@@ -13,7 +13,7 @@ namespace Business.Abstract
     {
         IResult Add(PermitImage entity);
         IDataResult<List<PermitImage>> GetListByVehicleId(int VehicleId);
-        IDataResult<List<VehiclePermitImageDto>> GetListVehiclePermitImage(int VehicleId);
+        IDataResult<List<PermitImage>> GetListByImg(string img);
 
     }
 }
