@@ -1,4 +1,5 @@
-﻿using Business.Abstract;
+﻿using Azure.Storage.Blobs;
+using Business.Abstract;
 using Business.Constans;
 using Core.Utilities.Result.Abstract;
 using Core.Utilities.Result.Concrete;
@@ -20,6 +21,7 @@ namespace Business.Concrete
         IVehicleDal _vehicleDal;
         IFileService _fileService;
         IPermitImageService _permitImageService;
+
         public VehicleManager(IVehicleDal vehicleDal, IFileService fileService, IPermitImageService permitImageService)
         {
             _vehicleDal = vehicleDal;
@@ -61,7 +63,18 @@ namespace Business.Concrete
                 _vehicleDal.Add(vehicle);
                 foreach (var item in entity.CarImages)
                 {
-                    string fileName = _fileService.FileSaveToServer(item, "./Content/");
+                     string fileName = _fileService.FileSaveToServer(item, "./Content/");
+                    #region
+                    //string fullLink = "https://taxi7x24prodstorage.blob.core.windows.net/ruhsat?";
+                    //var blobServiceClient = new BlobServiceClient(new Uri(fullLink), null);
+                    //var blobContainerClient = blobServiceClient.GetBlobContainerClient("ruhsat");
+
+
+                    //FileStream fileStream = new FileStream(item.FileName, FileMode.OpenOrCreate);
+                    //_fileService.UploadWithPath(fileStream, Path.GetFileName(fileName), overwrite:true,);
+                    #endregion
+                 
+                     
                     PermitImage permitImageTbl = new()
                     {
                         VehicleId = vehicle.VehicleID,

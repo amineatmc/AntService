@@ -24,8 +24,9 @@ namespace Entities.Dtos
         public string FinishLocation { get; set; }
         public DateTime StartTime { get; set; }
         public DateTime FinishTime { get; set; }
-
-       // public List<AllUser> AllUsers{ get; set; }
+        public bool Redirect { get; set; }
+        public string Status { get; set; }
+        // public List<AllUser> AllUsers{ get; set; }
         public List<Driver> Drivers { get; set; }
         public List<Passenger> Passengers { get; set; }
     }

@@ -32,6 +32,10 @@ namespace Business.Concrete
         {
            // var scores = new List<Score>();
             var list = _scoreDal.GetList().Where(x => x.DriverId == id).ToList();
+            if (list.Count==0)
+            {
+                return new ErrorDataResult<Score>("Kayıt yok.");
+            }
             int total = 0;
             for (int i = 0; i < list.Count; i++)
             {

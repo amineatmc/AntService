@@ -10,8 +10,8 @@ namespace Entities.Dtos
 {
     public class VehiclePermitImageDto : IDto
     {
-        public int VehicleId { get; set; }
-        public List<Vehicle> VehicleList { get; set; }
+       // public int VehicleId { get; set; }
+        //public List<Vehicle> VehicleList { get; set; }
         public List<PermitImage> ImageList { get; set; }
     }
 }

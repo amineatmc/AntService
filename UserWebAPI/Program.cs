@@ -100,7 +100,7 @@ app.UseHttpsRedirection();
 app.UseAuthorization();
 
 app.UseCors("dene");
-
+app.UseStaticFiles();
 app.MapControllers();
 app.UseRouting();
 app.MapHealthChecks("/health");

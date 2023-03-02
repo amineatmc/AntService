@@ -2,6 +2,8 @@
 using Entities.Concrete;
 using Entities.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.WindowsAzure.Storage;
+using Microsoft.WindowsAzure.Storage.Blob;
 
 namespace UserWebAPI.Controllers
 {
@@ -33,6 +35,23 @@ namespace UserWebAPI.Controllers
             var result = _vehicleService.AddVehicle(vehicle);
             if (result.Success)
             {
+                //string connectionString = "https://taxi7x24prodstorage.blob.core.windows.net/ruhsat?";
+                //string containerName = "./Container/";
+                //string blobName = "ruhsat";
+                //string imagePath = Path.Combine(vehicle.CarImages[0].FileName);
+
+                //CloudStorageAccount storageAccount = CloudStorageAccount.Parse(connectionString);
+                //CloudBlobClient blobClient = storageAccount.CreateCloudBlobClient();
+                //CloudBlobContainer container = blobClient.GetContainerReference(containerName);
+                //container.CreateIfNotExistsAsync();
+
+                //CloudBlockBlob blob = container.GetBlockBlobReference(blobName);
+
+                //using (var stream = new FileStream(imagePath, FileMode.Open))
+                //{
+                //    blob.UploadFromStreamAsync(stream);
+                //}
+
                 return Ok(vehicle);
             }
             return BadRequest();
